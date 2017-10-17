@@ -1,0 +1,5 @@
+export { deleteService as reminderDeleteService } from './reminders.service.js'
+export { patchService as reminderPatchService } from './reminders.service.js'
+export { postService as reminderPostService } from './reminders.service.js'
+export { getService as reminderGetService } from './reminders.service.js'
+export { putService as reminderPutService } from './reminders.service.js'
