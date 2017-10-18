@@ -1,5 +1,15 @@
 var config = {
+  sms_bank: 150,
+  max_sms_pages: 4,
+  // isRtL: true,
   translations: {
+    templates: 'Templates',
+    add_templates: 'Add template',
+    name: 'Name',
+    name_placeholder: 'Enter the name of the template',
+    text: 'Template`s text',
+    text_placeholder: 'Enter the text of the template',
+    tags_label: 'Tags',
     tags: {
       business_name: 'Business Name',
       business_phone_number: 'Business Phone Number',
@@ -26,6 +36,13 @@ var config = {
       text: 'Dear $$client_first_name$$, I want to remind you about your appointment at $$business_address$$ at $$client_next_appointment_date$$ $$client_next_appointment_time$$'
     }
   ],
+  urls: {
+    client_profile_img_prefix: './dist/media/clients-img/',
+    get_clients: '/reminders/clients?q={query}',
+    main: 'http://api.bewebmaster.co.il',
+    reminders: '/reminders',
+    media: './dist/media/'
+  },
   tags_list: {
     business_name: {
       value: 'Hair Style Ashdod',
@@ -47,7 +64,6 @@ var config = {
       value: 'http://aquaplants.co.il',
       average_length: 23
     },
-
     client_first_name: {
       value: 'ישראל',
       average_length: 6
@@ -56,7 +72,6 @@ var config = {
       value: 'ישראלי',
       average_length: 6
     },
-
     client_next_appointment_date: {
       value: '2017-11-01',
       average_length: 10
@@ -73,7 +88,5 @@ var config = {
       value: 'http://fashion-in-israel.com',
       average_length: 28
     }
-  },
-  sms_bank: 150,
-  max_sms_pages: 4
+  }
 }

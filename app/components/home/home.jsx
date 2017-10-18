@@ -1,3 +1,5 @@
+import Templates from '../templates/templates.jsx'
+import Topnav from '../topnav/topnav.jsx'
 import React, {Component} from 'react'
 import './home.styl'
 
@@ -7,7 +9,8 @@ class Home extends Component {
   render () {
     return (
       <div id='home'>
-        fasdasdfasd
+        <Topnav />
+        <Templates />
         <div className='test' />
       </div>
     )
