@@ -10,6 +10,8 @@ var config = {
     text: 'Template`s text',
     text_placeholder: 'Enter the text of the template',
     tags_label: 'Tags',
+    save: 'Save',
+    cancel: 'Cancel',
     tags: {
       business_name: 'Business Name',
       business_phone_number: 'Business Phone Number',

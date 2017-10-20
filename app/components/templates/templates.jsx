@@ -1,40 +1,39 @@
 import React, {Component} from 'react'
 import Swiper from 'react-id-swiper'
 import './templates.styl'
+
 class Templates extends Component {
-  constructor () {
-    super()
-    this.state = {
-    }
-  }
   render () {
     return (
       <div id='templates'>
-        {config.templates.map(i => (
-          <Swiper slidesPerView='auto' initialSlide={0} key={i.id} >
-            <div className='reminder'>
-              <div className='data'>
-                <div className='name'>{i.name}</div>
-                <div className='text' dangerouslySetInnerHTML={{ __html: i.text.replace(/\$\$(?:\w+)\$\$/gm, str => `<span class='tag'>${config.translations.tags[str.slice(2, -2)]}</span>`) }} />
-                <div className='tags'>{i.text.match(/\$\$(?:\w+)\$\$/gm).map(str => config.translations.tags[str.slice(2, -2)] + ', ')}</div>
+        {config.templates.map((i, k) => {
+          let a = i.text.match(/\$\$(?:\w+)\$\$/gm)
+          let t = i.text.replace(/\$\$(?:\w+)\$\$/gm, i => `<span class='tag'>${config.translations.tags[i.slice(2, -2)]}</span>`)
+          return (
+            <Swiper slidesPerView='auto' initialSlide={0} key={k}>
+              <div className='reminder'>
+                <div className='data'>
+                  <div className='name'>{i.name}</div>
+                  <div className='text' dangerouslySetInnerHTML={{ __html: t }} />
+                  <div className='tags'>{a && a.length > 0 && a.map((i, k) => config.translations.tags[i.slice(2, -2)] + (a.length > k + 1 && ', '))}</div>
+                </div>
+                <div className='send'>
+                  <img src={config.urls.media + 'send.png'} />
+                </div>
               </div>
-              <div className='send'>
-                <img src={config.urls.media + 'send.png'} />
+              <div className='controls'>
+                <div className='icon delete'>
+                  <img src={config.urls.media + 'pencil.svg'} />
+                </div>
+                <div className='icon edit'>
+                  <img src={config.urls.media + 'trash.svg'} />
+                </div>
+                <div className='icon clone'>
+                  <img src={config.urls.media + 'clone.svg'} />
+                </div>
               </div>
-            </div>
-            <div className='controls'>
-              <div className='icon delete'>
-                <img src={config.urls.media + 'pencil.svg'} />
-              </div>
-              <div className='icon edit'>
-                <img src={config.urls.media + 'trash.svg'} />
-              </div>
-              <div className='icon clone'>
-                <img src={config.urls.media + 'clone.svg'} />
-              </div>
-            </div>
-          </Swiper>
-        ))}
+            </Swiper>)
+        })}
       </div>
     )
   }

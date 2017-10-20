@@ -6,19 +6,21 @@ class Create extends Component {
   constructor () {
     super()
     this.state = {
+      textRes: '',
       name: '',
       text: ''
     }
   }
-  save = async () => {
-
+  save = () => {
+    Object.keys(config.translations.tags).map(i => {
+      this.state.textRes = this.state.textRes.replace(new RegExp(config.translations.tags[i], 'gm'), '$$$' + i + '$$$')
+    })
+    config.templates.push({id: 123, name: this.state.name, text: this.state.textRes})
+    this.cancel()
   }
   cancel = () => {
+    this.setState({textRes: '', name: '', text: ''})
     this.props.handleCreateModal()
-  }
-  removeTag = () => {
-    this.refs.text.removeChild(this.refs.text.childNodes[1])
-    // this.delSpace()
   }
   setCursor = () => {
     this.refs.text.focus()
@@ -28,7 +30,10 @@ class Create extends Component {
     let sel = window.getSelection()
     sel.removeAllRanges()
     sel.addRange(range)
-    console.log(this.refs.text.childNodes)
+  }
+  getPosCursor = () => {
+    this.refs.text.focus()
+    console.log(window.getSelection().getRangeAt(0).startOffset)
   }
   checkStartSpace = () => {
     if (this.state.text.slice(-6) === '&nbsp;' || this.state.text.length === 0) {
@@ -46,26 +51,34 @@ class Create extends Component {
   }
   addTag = async i => {
     await this.delSpace()
-    this.setState({text: this.state.text + this.checkStartSpace() + `<span class='tag' onclick='removeTag(this)'>${config.translations.tags[i]}</span>` + '&nbsp;'}, () => this.setCursor())
+    this.setState({text: this.state.text + this.checkStartSpace() +
+      `<span class='tag' contenteditable='false' onclick='removeTag(this)'>${config.translations.tags[i]}</span>` + '&nbsp;'}, () => this.setCursor())
   }
   render () {
-    console.log('MAIN@' + this.state.text + '@', this.state.text.length)
+    // console.log('MAIN@' + this.state.text + '@', this.state.text.length)
+    // console.log('RESULT@' + this.state.textRes + '@', this.state.textRes.length)
     return (
-      // ={this.props.isVisibleCreateModal}
-      <Modal show dialogClassName='main-modal-dialog' onHide={this.cancel}>
+      <Modal show={this.props.isVisibleCreateModal} dialogClassName='main-modal-dialog' onHide={this.cancel}>
         <Modal.Header>
           <h1 className={config.isRtL ? 'pd-r' : 'pd-l'}>{config.translations.add_templates}</h1>
           <img className={config.isRtL ? 'left' : 'right'} src={config.urls.media + 'add.svg'} onClick={this.cancel} />
         </Modal.Header>
         <div id='create-body'>
           <h1 className='name'>{config.translations.name}</h1>
-          <input type='text' value={this.state.name} onChange={e => this.setState({name: e.target.value})} placeholder={config.translations.name_placeholder} />
+          <input type='text' value={this.state.name} placeholder={config.translations.name_placeholder}
+            onChange={e => this.setState({name: e.target.value})} />
           <h1 className='text'>{config.translations.text}</h1>
-          <div className='text-input' contentEditable onBlur={e => this.setState({text: e.target.innerHTML})} ref='text'
-            dangerouslySetInnerHTML={{__html: this.state.text}} onClick={this.delSpace} />
+          <div className='text-input' onBlur={e => this.setState({text: e.target.innerHTML, textRes: e.target.innerText})} ref='text' contentEditable
+            dangerouslySetInnerHTML={{__html: this.state.text}} onKeyUp={e => this.setState({textRes: e.target.innerText})} />
           <h1 className='tags'>{config.translations.tags_label}</h1>
-          {Object.keys(config.translations.tags).map(i => <button key={i} className='tag-list' onClick={() => this.addTag(i)}>{config.translations.tags[i]}</button>)}
+          {Object.keys(config.translations.tags).map(i => <button key={i} className='tag-list'
+            onClick={() => this.addTag(i)}>{config.translations.tags[i]}</button>)}
         </div>
+        <div id='create-footer'><Modal.Footer>
+          <button className={config.isRtL ? 'radiusRight' : 'radiusLeft'} onClick={this.cancel}>{config.translations.cancel}</button>
+          <button className={config.isRtL ? 'radiusLeft' : 'radiusRight'} onClick={this.save}>{config.translations.save}</button>
+        </Modal.Footer></div>
+        <button onClick={this.getPosCursor}>asdfasd</button>
       </Modal>
     )
   }

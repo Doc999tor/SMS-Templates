@@ -9,7 +9,7 @@ class Home extends Component {
   render () {
     return (
       <div id='home'>
-        <Topnav />
+        <Topnav update={this.update} />
         <Templates />
         <div className='test' />
       </div>
