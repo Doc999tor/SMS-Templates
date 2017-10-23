@@ -28,9 +28,6 @@ class Templates extends Component {
                 <div className='icon edit'>
                   <img src={config.urls.media + 'trash.svg'} />
                 </div>
-                <div className='icon clone'>
-                  <img src={config.urls.media + 'clone.svg'} />
-                </div>
               </div>
             </Swiper>)
         })}

@@ -15,6 +15,10 @@
       outline none
   .text
     padding 5px 0 3px 0
+  .text-input:empty:before
+    content attr(placeholder)
+    background none
+    color #808080
   .text-input
     border 2px solid grey
     border-radius 7px
@@ -29,6 +33,13 @@
       background-color lightblue
       border-radius 5px
       padding 0.5px 5px
+      user-select none
+  .counter
+    padding 5px 0 0 0
+    width 100%
+    text-align start
+    font-size 16px
+    color grey
   .tags
     padding 5px 0 3px 0
   .tag-list

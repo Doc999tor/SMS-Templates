@@ -6,57 +6,41 @@ class Create extends Component {
   constructor () {
     super()
     this.state = {
-      textRes: '',
       name: '',
       text: ''
     }
   }
   save = () => {
     Object.keys(config.translations.tags).map(i => {
-      this.state.textRes = this.state.textRes.replace(new RegExp(config.translations.tags[i], 'gm'), '$$$' + i + '$$$')
+      this.state.text = this.state.text.replace(new RegExp(config.translations.tags[i], 'gm'), '$$$' + i + '$$$')
     })
-    config.templates.push({id: 123, name: this.state.name, text: this.state.textRes})
+    config.templates.push({id: 123, name: this.state.name, text: this.state.text})
     this.cancel()
   }
   cancel = () => {
-    this.setState({textRes: '', name: '', text: ''})
+    this.setState({name: '', text: ''})
     this.props.handleCreateModal()
   }
-  setCursor = () => {
+  insertHTML = p => {
     this.refs.text.focus()
-    let range = document.createRange()
-    range.setStart(this.refs.text.childNodes[this.refs.text.childNodes.length - 1], 1)
-    range.collapse(true)
-    let sel = window.getSelection()
-    sel.removeAllRanges()
-    sel.addRange(range)
+    let selection = window.getSelection()
+    let range = selection.getRangeAt(0)
+    let temp = document.createElement('div')
+    let insertion = document.createDocumentFragment()
+    temp.innerHTML = p
+    while (temp.firstChild) {
+      insertion.appendChild(temp.firstChild)
+    }
+    range.deleteContents()
+    range.insertNode(insertion)
   }
-  getPosCursor = () => {
+  addTag = i => {
+    this.insertHTML(`<span class='tag' contenteditable='false' onclick='removeTag(this)'>${config.translations.tags[i]}</span>` + '&nbsp;')
+    this.setState({text: this.state.text + config.translations.tags[i] + ' '})
     this.refs.text.focus()
-    console.log(window.getSelection().getRangeAt(0).startOffset)
-  }
-  checkStartSpace = () => {
-    if (this.state.text.slice(-6) === '&nbsp;' || this.state.text.length === 0) {
-      return ''
-    } else {
-      return '&nbsp;'
-    }
-  }
-  delSpace = async () => {
-    if (this.state.text.slice(-7) === ' &nbsp;') {
-      await this.setState({text: this.state.text.slice(0, -7)}, () => this.delSpace())
-    } else if (this.state.text.slice(-6) === '&nbsp;') {
-      await this.setState({text: this.state.text.slice(0, -6)}, () => this.delSpace())
-    }
-  }
-  addTag = async i => {
-    await this.delSpace()
-    this.setState({text: this.state.text + this.checkStartSpace() +
-      `<span class='tag' contenteditable='false' onclick='removeTag(this)'>${config.translations.tags[i]}</span>` + '&nbsp;'}, () => this.setCursor())
   }
   render () {
-    // console.log('MAIN@' + this.state.text + '@', this.state.text.length)
-    // console.log('RESULT@' + this.state.textRes + '@', this.state.textRes.length)
+    console.log('TEXT', this.state.text)
     return (
       <Modal show={this.props.isVisibleCreateModal} dialogClassName='main-modal-dialog' onHide={this.cancel}>
         <Modal.Header>
@@ -64,12 +48,13 @@ class Create extends Component {
           <img className={config.isRtL ? 'left' : 'right'} src={config.urls.media + 'add.svg'} onClick={this.cancel} />
         </Modal.Header>
         <div id='create-body'>
-          <h1 className='name'>{config.translations.name}</h1>
-          <input type='text' value={this.state.name} placeholder={config.translations.name_placeholder}
+          <h1 className='name'>{config.translations.title}</h1>
+          <input type='text' value={this.state.name} placeholder={config.translations.title_pl}
             onChange={e => this.setState({name: e.target.value})} />
-          <h1 className='text'>{config.translations.text}</h1>
-          <div className='text-input' onBlur={e => this.setState({text: e.target.innerHTML, textRes: e.target.innerText})} ref='text' contentEditable
-            dangerouslySetInnerHTML={{__html: this.state.text}} onKeyUp={e => this.setState({textRes: e.target.innerText})} />
+          <h1 className='text'>{config.translations.content}</h1>
+          <div className='text-input' ref='text' contentEditable onBlur={e => this.setState({text: e.target.innerText})}
+            onKeyUp={e => this.setState({text: e.target.innerText})} placeholder={config.translations.message_pl} />
+          <h1 className='counter'>{'Used:' + this.state.text.length}</h1>
           <h1 className='tags'>{config.translations.tags_label}</h1>
           {Object.keys(config.translations.tags).map(i => <button key={i} className='tag-list'
             onClick={() => this.addTag(i)}>{config.translations.tags[i]}</button>)}
@@ -78,7 +63,6 @@ class Create extends Component {
           <button className={config.isRtL ? 'radiusRight' : 'radiusLeft'} onClick={this.cancel}>{config.translations.cancel}</button>
           <button className={config.isRtL ? 'radiusLeft' : 'radiusRight'} onClick={this.save}>{config.translations.save}</button>
         </Modal.Footer></div>
-        <button onClick={this.getPosCursor}>asdfasd</button>
       </Modal>
     )
   }
