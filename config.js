@@ -1,4 +1,8 @@
 var config = {
+  MAX_ASCII_PAGE: 160,
+  MAX_ASCII_NEXT_PAGES: 146,
+  MAX_UNICODE_FIRST_PAGE: 70,
+  MAX_UNICODE_NEXT_PAGES: 63,
   sms_bank: 150,
   max_sms_pages: 4,
   // isRtL: true,
@@ -12,6 +16,7 @@ var config = {
     tags_label: 'Tags',
     save: 'Save',
     cancel: 'Cancel',
+    preview: 'Preview',
     tags: {
       business_name: 'Business Name',
       business_phone_number: 'Business Phone Number',
