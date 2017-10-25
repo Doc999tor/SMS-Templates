@@ -10,7 +10,7 @@ class Home extends Component {
     return (
       <div id='home'>
         <Topnav update={this.update} />
-        <Templates />
+        <Templates update={this.update} />
         <div className='test' />
       </div>
     )

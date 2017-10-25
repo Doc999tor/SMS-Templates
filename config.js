@@ -17,6 +17,10 @@ var config = {
     save: 'Save',
     cancel: 'Cancel',
     preview: 'Preview',
+    message: 'The length of the message has exceeded {pages} pages, are you sure you want to send such a long message?',
+    del_template: 'Are you sure you want to delete this template?',
+    delete: 'Delete',
+    delete_tem: 'Delete template',
     tags: {
       business_name: 'Business Name',
       business_phone_number: 'Business Phone Number',
