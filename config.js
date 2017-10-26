@@ -55,7 +55,9 @@ var config = {
     get_clients: '/reminders/clients?q={query}',
     main: 'http://api.bewebmaster.co.il',
     reminders: '/reminders',
-    media: './dist/media/'
+    templates: '/templates',
+    media: './dist/media/',
+    send_sms: '/send-sms'
   },
   tags_list: {
     business_name: {
