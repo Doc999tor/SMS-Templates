@@ -8,7 +8,7 @@ var config = {
   // isRtL: true,
   translations: {
     templates: 'Templates',
-    add_templates: 'Add template',
+    add_template: 'Add template',
     title: 'Title',
     title_pl: 'Enter the title',
     content: 'Content',
@@ -21,6 +21,7 @@ var config = {
     del_template: 'Are you sure you want to delete this template?',
     delete: 'Delete',
     delete_tem: 'Delete template',
+    edit_template: 'Edit template',
     tags: {
       business_name: 'Business Name',
       business_phone_number: 'Business Phone Number',
@@ -39,11 +40,13 @@ var config = {
     {
       id: 1,
       name: 'Greeting massage for a new client',
+      type: 'common',
       text: 'Dear $$client_first_name$$, It s great pleasure to meet you. You re always welcome at $$business_address$$, feel free to call us any time by $$business_phone_number$$'
     },
     {
       id: 2,
       name: 'Next Appointment reminder',
+      type: 'special',
       text: 'Dear $$client_first_name$$, I want to remind you about your appointment at $$business_address$$ at $$client_next_appointment_date$$ $$client_next_appointment_time$$'
     }
   ],

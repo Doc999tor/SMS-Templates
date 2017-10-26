@@ -47,9 +47,6 @@ class Templates extends Component {
                   <div className='text' dangerouslySetInnerHTML={{ __html: t }} />
                   <div className='tags'>{a && a.length > 0 && a.map((i, k) => config.translations.tags[i.slice(2, -2)] + (a.length > k + 1 && ', '))}</div>
                 </div>
-                <div className='send'>
-                  <img src={config.urls.media + 'send.png'} />
-                </div>
               </div>
               <div className='controls'>
                 <div className='icon delete'>
