@@ -58,18 +58,19 @@ class Create extends Component {
   }
   addTag = i => {
     this.setState({text: this.state.text + config.translations.tags[i] + ' '})
-    this.insertHTML(`<span class='tag' contenteditable='false' onclick='removeTag(this)'>${config.translations.tags[i]}</span>` + '&nbsp;')
+    this.insertHTML(`<span class='tag' contenteditable='false' onclick='removeTag(this)'>${config.translations.tags[i]}</span>` + ' ')
     this.setCursor()
   }
   init = () => {
     let button = this.refs.preview
-    button.addEventListener('touchstart', async e => {
+    button.addEventListener('touchstart', e => {
       e.preventDefault()
       if (!this.state.isActivePreview) this.setState({preview: replaceTags(this.state.text, false), isActivePreview: true})
     }, false)
     button.addEventListener('touchend', e => {
       e.preventDefault()
-      if (this.state.iremoveTagsActivePreview) this.setState({isActivePreview: false})
+      if (this.state.isActivePreview) this.setState({isActivePreview: false})
+      this.refs.text.focus()
     }, false)
   }
   componentDidMount () {
