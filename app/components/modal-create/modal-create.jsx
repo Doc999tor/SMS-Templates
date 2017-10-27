@@ -3,6 +3,10 @@ import React, {Component, PropTypes} from 'react'
 import Modal from 'react-bootstrap-modal'
 import './modal-create.styl'
 
+window.removeTag = p => {
+  p.parentNode.removeChild(p)
+  document.getElementById('main_text_input').click()
+}
 class Create extends Component {
   constructor () {
     super()
@@ -65,7 +69,7 @@ class Create extends Component {
     }, false)
     button.addEventListener('touchend', e => {
       e.preventDefault()
-      if (this.state.isActivePreview) this.setState({isActivePreview: false})
+      if (this.state.iremoveTagsActivePreview) this.setState({isActivePreview: false})
     }, false)
   }
   componentDidMount () {

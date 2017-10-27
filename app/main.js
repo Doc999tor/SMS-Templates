@@ -10,7 +10,7 @@ ReactDOM.render(
     <Switch>
       <Route exact path={config.urls.templates} component={Templates} />
       <Route path={config.urls.send_sms} component={SendSMS} />
-      <Redirect from='/' to={config.urls.send_sms} />
+      <Redirect from='/' to={config.urls.templates} />
     </Switch>
   </HashRouter>,
 document.getElementById('root'))
