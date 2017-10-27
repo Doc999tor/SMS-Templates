@@ -1,4 +1,8 @@
 #message
+  .ch475
+    height 475px
+  .ch450
+    height 450px
   .message
     padding 30px
     .load-templates
@@ -23,6 +27,7 @@
       border 2px solid grey
       border-radius 7px
       overflow-y scroll
+      overflow-x hidden
       font-size 21px
       padding 0 5px
       height 120px
@@ -30,6 +35,7 @@
       &:focus
         outline none
       .tag
+        display inline-block
         background-color lightblue
         border-radius 5px
         padding 0.5px 5px
@@ -47,9 +53,10 @@
         outline none
   .preview-content
     width 100%
+    padding 30px
     .content
       width 100%
-      height 400px
+      height 380px
       border 2px solid grey
       border-radius 7px
       overflow-y scroll
@@ -60,7 +67,7 @@
   .preview-wrap
     width 100%
     margin 0 auto
-    padding 10px 0 30px 0
+    padding 0 0 30px 0
     .preview
       display block
       position relative
@@ -75,13 +82,13 @@
       width 150px
       &:focus
         outline none
-      &:active
-        background-color aqua
-        color white
       img
         position absolute
         width 20px
         margin 3px 5px
+    .preview-active
+      background-color aqua!important
+      color white!important
   .buttons
     width 100%
     button
@@ -89,6 +96,10 @@
       height 60px
       display inline-block
       border none
+    .cancel
+      background-color rgb(176,196,153)
+    .send
+      background-color yellowgreen
 .counter
   padding 5px 0 0 0
   width 100%

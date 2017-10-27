@@ -110,7 +110,7 @@ class Create extends Component {
             <h1 className={lenght.isOk ? 'message' : 'hidden'}>{config.translations.message.replace('{pages}', config.max_sms_pages)}</h1>
           </div>
           <div className='preview-wrap'>
-            <button className='preview' ref='preview'>{config.translations.preview}<img src={config.urls.media + 'eye.png'} /></button>
+            <button className={'preview ' + (this.state.isActivePreview && 'preview-active')} ref='preview'>{config.translations.preview}<img src={config.urls.media + 'eye.png'} /></button>
           </div>
         </div>
         <div id='create-footer'><Modal.Footer>

@@ -25,6 +25,9 @@ var config = {
     new_message: 'New message',
     load_template: 'Load template',
     message_text: 'Message text',
+    send: 'Send',
+    templates_list: 'Templates list',
+    to_templates_list: 'To templates list',
     tags: {
       business_name: 'Business Name',
       business_phone_number: 'Business Phone Number',

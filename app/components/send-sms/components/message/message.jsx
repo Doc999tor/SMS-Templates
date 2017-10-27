@@ -1,3 +1,4 @@
+import Templates from '../modal-templates/modal-templates.jsx'
 import {checkLength, replaceTags} from 'project-components'
 import React, {Component} from 'react'
 import './message.styl'
@@ -6,6 +7,7 @@ class Message extends Component {
   constructor () {
     super()
     this.state = {
+      isVisibleModalTemplates: false,
       isActivePreview: false,
       preview: '',
       text: ''
@@ -41,7 +43,7 @@ class Message extends Component {
   }
   addTag = i => {
     this.setState({text: this.state.text + config.translations.tags[i] + ' '})
-    this.insertHTML(`<span class='tag' contenteditable='false' onclick='removeTag(this)'>${config.translations.tags[i]}</span>` + '&nbsp;')
+    this.insertHTML(`<span class='tag' contenteditable='false' onclick='removeTag(this)'>${config.translations.tags[i]}</span>` + ' ')
     this.setCursor()
   }
   init = () => {
@@ -52,17 +54,20 @@ class Message extends Component {
     }, false)
     button.addEventListener('touchend', e => {
       e.preventDefault()
-      if (this.state.iremoveTagsActivePreview) this.setState({isActivePreview: false})
+      if (this.state.isActivePreview) this.setState({isActivePreview: false})
+      this.refs.text_send.focus()
     }, false)
   }
   componentDidMount = () => this.init()
+  handleModalTemplates = () => this.setState({isVisibleModalTemplates: !this.state.isVisibleModalTemplates})
   render () {
     let lenght = checkLength(this.state.text)
     return (
       <div id='message'>
-        <div className={this.state.isActivePreview ? 'hidden' : 'message ' + (lenght.isOk ? 'ch445' : 'ch420')}>
+        <Templates isVisibleModalTemplates={this.state.isVisibleModalTemplates} handleModalTemplates={this.handleModalTemplates} />
+        <div className={this.state.isActivePreview ? 'hidden' : 'message ' + (lenght.isOk ? 'ch475' : 'ch450')}>
           <div className='load-templates'>
-            <button>{config.translations.load_template}</button>
+            <button onClick={this.handleModalTemplates}>{config.translations.load_template}</button>
           </div>
           <h1>{config.translations.message_text}</h1>
           <div className='text-input' id='main_text_input' ref='text_send' contentEditable onBlur={e => this.setState({text: e.target.innerText})}
@@ -74,17 +79,17 @@ class Message extends Component {
           {Object.keys(config.translations.tags).map(i => <button key={i} className='tag-list'
             onClick={() => this.addTag(i)}>{config.translations.tags[i]}</button>)}
         </div>
-        <div className={this.state.isActivePreview ? 'preview-content ' + (lenght.isOk ? 'ch445' : 'ch420') : 'hidden'}>
+        <div className={this.state.isActivePreview ? 'preview-content ' + (lenght.isOk ? 'ch475' : 'ch450') : 'hidden'}>
           <div className='content'>{this.state.preview}</div>
           <h1 className='counter'>{lenght.str}</h1>
           <h1 className={lenght.isOk ? 'message-text' : 'hidden'}>{config.translations.message.replace('{pages}', config.max_sms_pages)}</h1>
         </div>
         <div className='preview-wrap'>
-          <button className='preview' ref='preview_send'>{config.translations.preview}<img src={config.urls.media + 'eye.png'} /></button>
+          <button className={'preview ' + (this.state.isActivePreview && 'preview-active')} ref='preview_send'>{config.translations.preview}<img src={config.urls.media + 'eye.png'} /></button>
         </div>
         <div className='buttons'>
-          <button>{}</button>
-          <button>{}</button>
+          <button className='cancel'>{config.translations.cancel}</button>
+          <button className='send'>{config.translations.send}</button>
         </div>
       </div>
     )
