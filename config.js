@@ -22,6 +22,9 @@ var config = {
     delete: 'Delete',
     delete_tem: 'Delete template',
     edit_template: 'Edit template',
+    new_message: 'New message',
+    load_template: 'Load template',
+    message_text: 'Message text',
     tags: {
       business_name: 'Business Name',
       business_phone_number: 'Business Phone Number',

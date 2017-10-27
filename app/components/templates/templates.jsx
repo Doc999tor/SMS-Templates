@@ -1,5 +1,5 @@
-import TemplatesList from '../templates-list/templates-list.jsx'
-import Topnav from '../topnav/topnav.jsx'
+import TemplatesList from './components/templates-list/templates-list.jsx'
+import Topnav from './components/topnav/topnav.jsx'
 import React, {Component} from 'react'
 import './templates.styl'
 

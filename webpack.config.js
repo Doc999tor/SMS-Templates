@@ -63,6 +63,7 @@ module.exports = env => {
       ]
     },
     devServer: {
+      historyApiFallback: true,
       stats: statConf,
       port: '3000'
     },
