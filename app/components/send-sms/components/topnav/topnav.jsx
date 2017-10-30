@@ -7,7 +7,7 @@ class Topnav extends Component {
       <div id='topnav'>
         <div className='header'>
           <div className={'icons-l ' + (config.isRtL ? 'right' : 'left')}>
-            <div className={'icon ' + (config.isRtL ? 'right' : 'left')} onClick={() => { window.history.go(-1) }}>
+            <div className={'icon ' + (config.isRtL ? 'right' : 'left')} onClick={() => window.history.go(-1)}>
               <img className={'arrow-back ' + (config.isRtL && 'arrow-back-mr')} src={config.urls.media + 'arrow-back.svg'} />
             </div>
           </div>

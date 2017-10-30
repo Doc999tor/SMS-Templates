@@ -1,5 +1,8 @@
 import Templates from '../modal-templates/modal-templates.jsx'
+import SMSCount from '../modal-sms-count/modal-sms-count.jsx'
 import {checkLength, replaceTags} from 'project-components'
+import Success from '../modal-success/modal-success.jsx'
+import Failed from '../modal-failed/modal-failed.jsx'
 import React, {Component} from 'react'
 import './message.styl'
 
@@ -8,6 +11,9 @@ class Message extends Component {
     super()
     this.state = {
       isVisibleModalTemplates: false,
+      isVisibleModalSMSCount: false,
+      isVisibleModalSuccess: false,
+      isVisibleModalFailed: false,
       isActivePreview: false,
       preview: '',
       text: ''
@@ -58,20 +64,31 @@ class Message extends Component {
       this.refs.text_send.focus()
     }, false)
   }
-  componentDidMount = () => this.init()
+  getTemplate = p => {
+    this.refs.text_send.innerHTML = p.replace(/\$\$(?:\w+)\$\$/gm, i =>
+      `<span class='tag' contenteditable='false' onclick='removeTag(this)'>${config.translations.tags[i.slice(2, -2)]}</span>`)
+    this.setState({text: this.refs.text_send.innerText})
+  }
   handleModalTemplates = () => this.setState({isVisibleModalTemplates: !this.state.isVisibleModalTemplates})
+  handleModalSMSCount = () => this.setState({isVisibleModalSMSCount: !this.state.isVisibleModalSMSCount})
+  handleModalSuccess = () => this.setState({isVisibleModalSuccess: !this.state.isVisibleModalSuccess})
+  handleModalFailed = () => this.setState({isVisibleModalFailed: !this.state.isVisibleModalFailed})
+  componentDidMount = () => this.init()
   render () {
     let lenght = checkLength(this.state.text)
     return (
       <div id='message'>
-        <Templates isVisibleModalTemplates={this.state.isVisibleModalTemplates} handleModalTemplates={this.handleModalTemplates} />
+        <Templates isVisibleModalTemplates={this.state.isVisibleModalTemplates} handleModalTemplates={this.handleModalTemplates} getTemplate={this.getTemplate} />
+        <SMSCount isVisibleModalSMSCount={this.state.isVisibleModalSMSCount} handleModalSMSCount={this.handleModalSMSCount} />
+        <Success isVisibleModalSuccess={this.state.isVisibleModalSuccess} handleModalSuccess={this.handleModalSuccess} />
+        <Failed isVisibleModalFailed={this.state.isVisibleModalFailed} handleModalFailed={this.handleModalFailed} />
         <div className={this.state.isActivePreview ? 'hidden' : 'message ' + (lenght.isOk ? 'ch475' : 'ch450')}>
           <div className='load-templates'>
             <button onClick={this.handleModalTemplates}>{config.translations.load_template}</button>
           </div>
           <h1>{config.translations.message_text}</h1>
           <div className='text-input' id='main_text_input' ref='text_send' contentEditable onBlur={e => this.setState({text: e.target.innerText})}
-            onKeyUp={e => this.setState({text: e.target.innerText})} placeholder={config.translations.message_pl}
+            onKeyUp={e => this.setState({text: e.target.innerText})} placeholder={config.translations.message_pl_send_sms}
             onClick={e => this.setState({text: e.target.innerText})} />
           <h1 className='counter'>{lenght.str}</h1>
           <h1 className={lenght.isOk ? 'message-text' : 'hidden'}>{config.translations.message.replace('{pages}', config.max_sms_pages)}</h1>
@@ -88,8 +105,8 @@ class Message extends Component {
           <button className={'preview ' + (this.state.isActivePreview && 'preview-active')} ref='preview_send'>{config.translations.preview}<img src={config.urls.media + 'eye.png'} /></button>
         </div>
         <div className='buttons'>
-          <button className='cancel'>{config.translations.cancel}</button>
-          <button className='send'>{config.translations.send}</button>
+          <button className='cancel' onClick={() => window.history.go(-1)}>{config.translations.cancel}</button>
+          <button className='send' onClick={this.handleModalSMSCount}>{config.translations.send}</button>
         </div>
       </div>
     )
