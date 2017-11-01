@@ -9,9 +9,9 @@ class TemplatesList extends Component {
   constructor () {
     super()
     this.state = {
+      isVisibleCreateModalContex: false,
       isVisibleModalConfirmed: false,
-      isVisibleCreateModal: false,
-      isVisibleCreateModa: false
+      isVisibleCreateModal: false
     }
   }
   findIndex = id => {
@@ -27,15 +27,15 @@ class TemplatesList extends Component {
   handleConfirmedModal = i => this.setState({isVisibleModalConfirmed: !this.state.isVisibleModalConfirmed, i: this.findIndex(i)}, this.props.update())
   handleCreateModal = i => {
     this.setState({isVisibleCreateModal: !this.state.isVisibleCreateModal, i: this.findIndex(i)})
-    if (this.state.isVisibleCreateModa) setTimeout(() => this.setState({isVisibleCreateModa: !this.state.isVisibleCreateModa}), 150)
-    else this.setState({isVisibleCreateModa: !this.state.isVisibleCreateModa})
+    if (this.state.isVisibleCreateModalContex) setTimeout(() => this.setState({isVisibleCreateModalContex: false}), 300)
+    else this.setState({isVisibleCreateModalContex: true})
     this.props.update()
   }
   render () {
     return (
       <div id='templates-list'>
         <Delete handleConfirmedModal={this.handleConfirmedModal} isVisibleModalConfirmed={this.state.isVisibleModalConfirmed} i={this.state.i} />
-        {this.state.isVisibleCreateModa &&
+        {this.state.isVisibleCreateModalContex &&
           <Create handleCreateModal={this.handleCreateModal} isVisibleCreateModal={this.state.isVisibleCreateModal} isEdit i={this.state.i} />}
         {config.templates.map(i => {
           let a = i.text.match(/\$\$(?:\w+)\$\$/gm)

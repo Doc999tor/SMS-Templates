@@ -6,32 +6,38 @@ class Modal extends Component {
   constructor () {
     super()
     this.state = {
+      animation: false,
       flag: false
     }
   }
-  componentDidUpdate () {
-    if (this.props.show && !this.state.flag) {
-      setTimeout(() => { this.setState({flag: true}) }, 1)
-    }
-    if (!this.props.show && this.state.flag) {
-      this.setState({flag: false})
+  init = () => {
+    if (this.props.show && !this.state.animation) {
+      setTimeout(() => this.setState({animation: true, flag: true}), 1)
+    } else if (!this.props.show && this.state.animation) {
+      setTimeout(() => this.setState({animation: false}), 1)
+      setTimeout(() => this.setState({flag: false}), 200)
     }
   }
+  componentDidUpdate = () => this.init()
+  componentDidMount = () => this.init()
   render () {
     return (
-      <div id={this.props.show ? 'modal-dialog' : 'hidden'} className={this.state.flag ? 'fadetyu' : ''}
-        onClick={this.props.onHide} >
-        <div id='modal-content' className={this.state.flag ? 'fadeqwe' : ''} onClick={e => e.stopPropagation()}>
-          {this.props.children}
+      <div>
+        <div id={this.props.show ? 'modal-background' : this.state.flag ? 'modal-background' : 'hidden'}
+          className={this.state.animation ? 'fade-background' : ''} onClick={this.props.onHide} />
+        <div id={this.props.show ? 'modal-wrapper' : this.state.flag ? 'modal-wrapper' : 'hidden'}>
+          <div id='modal-content' className={this.state.animation ? 'fade-content' : ''} onClick={e => e.stopPropagation()}>
+            {this.props.children}
+          </div>
         </div>
       </div>
     )
   }
 }
 Modal.propTypes = {
-  onHide: PropTypes.func.isRequired,
-  show: PropTypes.bool.isRequired,
-  children: PropTypes.any
+  children: PropTypes.any,
+  onHide: PropTypes.func,
+  show: PropTypes.bool
 }
 
 export default Modal
