@@ -1,5 +1,6 @@
 import Create from '../modal-create/modal-create.jsx'
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 import './topnav.styl'
 
 class Topnav extends Component {

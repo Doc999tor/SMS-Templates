@@ -106,7 +106,7 @@ class Message extends Component {
         </div>
         <div className='buttons'>
           <button className='cancel' onClick={() => window.history.go(-1)}>{config.translations.cancel}</button>
-          <button className='send' onClick={this.handleModalSMSCount}>{config.translations.send}</button>
+          <button className='send' onClick={this.handleModalSuccess}>{config.translations.send}</button>
         </div>
       </div>
     )

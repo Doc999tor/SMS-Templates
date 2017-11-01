@@ -1,6 +1,7 @@
-import React, {Component, PropTypes} from 'react'
-import Modal from 'react-bootstrap-modal'
+import {Modal} from 'project-components'
+import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
+import PropTypes from 'prop-types'
 import './modal-templates.styl'
 
 class Templates extends Component {
@@ -8,11 +9,11 @@ class Templates extends Component {
   render () {
     return (
       <Modal show={this.props.isVisibleModalTemplates} dialogClassName='main-modal-dialog' onHide={this.cancel}>
-        <Modal.Header>
+        <div className='templates-header'>
           <h1 className={config.isRtL ? 'pd-r' : 'pd-l'} >{config.translations.templates_list}</h1>
           <img className={config.isRtL ? 'left' : 'right'} src={config.urls.media + 'add.svg'} onClick={this.cancel} />
-        </Modal.Header>
-        <div id='templates-body'>
+        </div>
+        <div className='templates-body'>
           {config.templates.filter(i => i.type === 'common').map(i => {
             let a = i.text.match(/\$\$(?:\w+)\$\$/gm)
             let t = i.text.replace(/\$\$(?:\w+)\$\$/gm, i => `<span class='tag'>${config.translations.tags[i.slice(2, -2)]}</span>`)

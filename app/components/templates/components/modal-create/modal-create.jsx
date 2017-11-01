@@ -1,6 +1,6 @@
-import {checkLength, replaceTags} from 'project-components'
-import React, {Component, PropTypes} from 'react'
-import Modal from 'react-bootstrap-modal'
+import {checkLength, replaceTags, Modal} from 'project-components'
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 import './modal-create.styl'
 
 window.removeTag = p => {
@@ -85,11 +85,11 @@ class Create extends Component {
     let lenght = checkLength(this.state.text)
     return (
       <Modal show={this.props.isVisibleCreateModal} dialogClassName='main-modal-dialog' onHide={this.cancel}>
-        <Modal.Header>
+        <div className='create-header'>
           <h1 className={config.isRtL ? 'pd-r' : 'pd-l'}>{this.props.isEdit ? config.translations.edit_template : config.translations.add_template}</h1>
           <img className={config.isRtL ? 'left' : 'right'} src={config.urls.media + 'add.svg'} onClick={this.cancel} />
-        </Modal.Header>
-        <div id='create-body'>
+        </div>
+        <div className='create-body'>
           <div className={this.state.isActivePreview ? 'hidden' : 'create ' + (lenght.isOk ? 'ch445' : 'ch420')}>
             <h1 className='name'>{config.translations.title}</h1>
             <input type='text' value={this.state.name} placeholder={config.translations.title_pl}
@@ -113,11 +113,11 @@ class Create extends Component {
             <button className={'preview ' + (this.state.isActivePreview && 'preview-active')} ref='preview'>{config.translations.preview}<img src={config.urls.media + 'eye.png'} /></button>
           </div>
         </div>
-        <div id='create-footer'><Modal.Footer>
+        <div className='create-footer'>
           <button className={config.isRtL ? 'radiusRight' : 'radiusLeft'} onClick={this.cancel}>{config.translations.cancel}</button>
           <button className={config.isRtL ? 'radiusLeft' : 'radiusRight'}
             onClick={this.props.isEdit ? this.update : this.save}>{config.translations.save}</button>
-        </Modal.Footer></div>
+        </div>
       </Modal>
     )
   }

@@ -1,7 +1,8 @@
 import Delete from '../modal-delete/modal-delete.jsx'
 import Create from '../modal-create/modal-create.jsx'
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
 import Swiper from 'react-id-swiper'
+import PropTypes from 'prop-types'
 import './templates-list.styl'
 
 class TemplatesList extends Component {

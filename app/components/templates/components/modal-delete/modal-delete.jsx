@@ -1,5 +1,6 @@
-import React, {Component, PropTypes} from 'react'
-import Modal from 'react-bootstrap-modal'
+import {Modal} from 'project-components'
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 import './modal-delete.styl'
 
 class Delete extends Component {
@@ -11,11 +12,11 @@ class Delete extends Component {
   render () {
     return (
       <Modal show={this.props.isVisibleModalConfirmed} dialogClassName='main-modal-dialog' onHide={this.cancel}>
-        <Modal.Header>
+        <div className='delete-header'>
           <h1 className={config.isRtL ? 'pd-r' : 'pd-l'} >{config.translations.delete_tem}</h1>
           <img className={config.isRtL ? 'left' : 'right'} src={config.urls.media + 'add.svg'} onClick={this.cancel} />
-        </Modal.Header>
-        <div id='delete-body'>
+        </div>
+        <div className='delete-body'>
           <h1>{config.translations.del_template}</h1>
           <button onClick={this.delete}>{config.translations.delete}</button>
         </div>
