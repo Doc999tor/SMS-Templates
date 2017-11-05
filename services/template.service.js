@@ -1,7 +1,7 @@
-import mainRequestService from './request.service'
+import {mainRequestService} from './request.service'
 
 export const postService = body => {
-  const mainUrl = config.urls.main + config.urls.reminders
+  const mainUrl = config.urls.main + config.urls.templates
   const options = {
     mode: 'cors',
     headers: {

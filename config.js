@@ -66,10 +66,7 @@ var config = {
     }
   ],
   urls: {
-    client_profile_img_prefix: './dist/media/clients-img/',
-    get_clients: '/reminders/clients?q={query}',
     main: 'http://api.bewebmaster.co.il',
-    reminders: '/reminders',
     templates: '/templates',
     media: './dist/media/',
     send_sms: '/send-sms'

@@ -1,4 +1,5 @@
 import {checkLength, replaceTags, Modal} from 'project-components'
+import {templatePostService} from 'project-services'
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import './modal-create.styl'
@@ -18,8 +19,16 @@ class Create extends Component {
     }
   }
   save = () => {
-    config.templates.push({id: 123, name: this.state.name, text: replaceTags(this.state.text, true)})
-    this.cancel()
+    const text = replaceTags(this.state.text, true)
+    const b = `name=${this.state.name}&text=${text}`
+    templatePostService(b).then(r => {
+      if (r.status === 201) {
+        r.json().then(r => {
+          config.templates.push({id: r, name: this.state.name, text})
+          this.cancel()
+        })
+      }
+    })
   }
   update = () => {
     config.templates[this.props.i].text = replaceTags(this.state.text, true)
