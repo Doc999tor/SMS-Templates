@@ -3,7 +3,7 @@
 # Usage
 ### Clone & Update
 ```
-For clone with submodules add ket '--recursive'
+For clone with submodules add key '--recursive'
 Update submodules 'git submodule update --recursive --remote'
 ```
 ### Development
