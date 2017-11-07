@@ -7,17 +7,10 @@ module.exports = {
   "globals": {
     ReactRouterDOM: false,
     PropTypes: false,
-    describe: false,
     ReactDOM: false,
-    element: false,
-    expect: false,
-    browser: true,
     config: false,
     moment: false,
-    before:false,
-    React: false,
-    it: false,
-    by: false
+    React: false
   },
   "parser": "babel-eslint",
   "parserOptions": {
