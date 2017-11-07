@@ -1,7 +1,7 @@
 # SMS Templates
 
 # Usage
-###Clone & Update
+### Clone & Update
 ```
 For clone with submodules add ket '--recursive'
 Update submodules 'git submodule update --recursive --remote'
