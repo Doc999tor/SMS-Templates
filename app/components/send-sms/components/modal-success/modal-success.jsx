@@ -1,9 +1,7 @@
 import {Modal} from 'project-components'
-import React, {Component} from 'react'
-import PropTypes from 'prop-types'
 import './modal-success.styl'
 
-class Success extends Component {
+export default class Success extends React.Component {
   cancel = () => this.props.handleModalSuccess()
   render () {
     return (
@@ -22,5 +20,3 @@ Success.propTypes = {
   isVisibleModalSuccess: PropTypes.bool.isRequired,
   handleModalSuccess: PropTypes.func.isRequired
 }
-
-export default Success

@@ -1,7 +1,6 @@
-import React, {Component} from 'react'
 import './topnav.styl'
 
-class Topnav extends Component {
+export default class Topnav extends React.Component {
   render () {
     return (
       <div id='topnav'>
@@ -18,4 +17,3 @@ class Topnav extends Component {
     )
   }
 }
-export default Topnav

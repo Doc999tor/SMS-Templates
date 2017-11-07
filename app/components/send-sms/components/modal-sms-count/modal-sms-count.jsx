@@ -1,9 +1,7 @@
 import {Modal} from 'project-components'
-import React, {Component} from 'react'
-import PropTypes from 'prop-types'
 import './modal-sms-count.styl'
 
-class SMSCount extends Component {
+export default class SMSCount extends React.Component {
   cancel = () => this.props.handleModalSMSCount()
   render () {
     return (
@@ -27,5 +25,3 @@ SMSCount.propTypes = {
   isVisibleModalSMSCount: PropTypes.bool.isRequired,
   handleModalSMSCount: PropTypes.func.isRequired
 }
-
-export default SMSCount

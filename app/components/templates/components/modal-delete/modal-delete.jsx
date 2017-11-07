@@ -1,9 +1,7 @@
 import {Modal} from 'project-components'
-import React, {Component} from 'react'
-import PropTypes from 'prop-types'
 import './modal-delete.styl'
 
-class Delete extends Component {
+export default class Delete extends React.Component {
   delete = () => {
     config.templates.splice(this.props.i, 1)
     this.cancel()
@@ -29,5 +27,3 @@ Delete.propTypes = {
   handleConfirmedModal: PropTypes.func.isRequired,
   i: PropTypes.number
 }
-
-export default Delete

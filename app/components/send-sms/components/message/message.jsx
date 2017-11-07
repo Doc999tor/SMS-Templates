@@ -3,10 +3,9 @@ import SMSCount from '../modal-sms-count/modal-sms-count.jsx'
 import {checkLength, replaceTags} from 'project-components'
 import Success from '../modal-success/modal-success.jsx'
 import Failed from '../modal-failed/modal-failed.jsx'
-import React, {Component} from 'react'
 import './message.styl'
 
-class Message extends Component {
+export default class Message extends React.Component {
   constructor () {
     super()
     this.state = {
@@ -18,9 +17,6 @@ class Message extends Component {
       preview: '',
       text: ''
     }
-  }
-  cancel = () => {
-    this.setState({text: ''})
   }
   setCursor = () => {
     this.refs.text_send.childNodes.forEach(i => {
@@ -112,4 +108,3 @@ class Message extends Component {
     )
   }
 }
-export default Message

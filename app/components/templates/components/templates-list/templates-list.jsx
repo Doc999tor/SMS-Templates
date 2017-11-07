@@ -1,11 +1,9 @@
 import Delete from '../modal-delete/modal-delete.jsx'
 import Create from '../modal-create/modal-create.jsx'
-import React, {Component} from 'react'
-import Swiper from 'react-id-swiper'
-import PropTypes from 'prop-types'
+import {Swiper} from 'project-components'
 import './templates-list.styl'
 
-class TemplatesList extends Component {
+export default class TemplatesList extends React.Component {
   constructor () {
     super()
     this.state = {
@@ -62,4 +60,3 @@ class TemplatesList extends Component {
 TemplatesList.propTypes = {
   update: PropTypes.func.isRequired
 }
-export default TemplatesList

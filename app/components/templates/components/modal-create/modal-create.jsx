@@ -1,14 +1,8 @@
 import {checkLength, replaceTags, Modal} from 'project-components'
 import {templatePostService} from 'project-services'
-import React, {Component} from 'react'
-import PropTypes from 'prop-types'
 import './modal-create.styl'
 
-window.removeTag = p => {
-  p.parentNode.removeChild(p)
-  document.getElementById('main_text_input').click()
-}
-class Create extends Component {
+export default class Create extends React.Component {
   constructor () {
     super()
     this.state = {
@@ -137,4 +131,3 @@ Create.propTypes = {
   isEdit: PropTypes.bool,
   i: PropTypes.number
 }
-export default Create

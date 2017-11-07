@@ -1,9 +1,8 @@
 import TemplatesList from './components/templates-list/templates-list.jsx'
 import Topnav from './components/topnav/topnav.jsx'
-import React, {Component} from 'react'
 import './templates.styl'
 
-class Templates extends Component {
+export default class Templates extends React.Component {
   componentWillMount = () => { if (config.isRtL) document.getElementsByTagName('body')[0].style.direction = 'rtl' }
   update = () => this.forceUpdate()
   render () {
@@ -16,4 +15,3 @@ class Templates extends Component {
     )
   }
 }
-export default Templates

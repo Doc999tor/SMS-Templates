@@ -1,10 +1,7 @@
 import {Modal} from 'project-components'
-import React, {Component} from 'react'
-import {Link} from 'react-router-dom'
-import PropTypes from 'prop-types'
 import './modal-templates.styl'
 
-class Templates extends Component {
+export default class Templates extends React.Component {
   cancel = () => this.props.handleModalTemplates()
   render () {
     return (
@@ -26,7 +23,7 @@ class Templates extends Component {
               </div>)
           })}
         </div>
-        <div className='to-templates'><Link to={config.urls.templates}>{config.translations.to_templates_list}</Link></div>
+        <div className='to-templates'><ReactRouterDOM.Link to={config.urls.templates}>{config.translations.to_templates_list}</ReactRouterDOM.Link></div>
       </Modal>
     )
   }
@@ -36,5 +33,3 @@ Templates.propTypes = {
   handleModalTemplates: PropTypes.func.isRequired,
   getTemplate: PropTypes.func.isRequired
 }
-
-export default Templates

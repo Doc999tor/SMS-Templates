@@ -1,16 +1,18 @@
-import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom'
 import Templates from './components/templates/templates.jsx'
 import SendSMS from './components/send-sms/send-sms.jsx'
-import ReactDOM from 'react-dom'
-import React from 'react'
 import './main.styl'
 
+window.removeTag = p => {
+  p.parentNode.removeChild(p)
+  document.getElementById('main_text_input').click()
+}
+
 ReactDOM.render(
-  <BrowserRouter>
-    <Switch>
-      <Route exact path={config.urls.templates} component={Templates} />
-      <Route path={config.urls.send_sms} component={SendSMS} />
-      <Redirect from='/' to={config.urls.templates} />
-    </Switch>
-  </BrowserRouter>,
+  <ReactRouterDOM.BrowserRouter>
+    <ReactRouterDOM.Switch>
+      <ReactRouterDOM.Route exact path={config.urls.templates} component={Templates} />
+      <ReactRouterDOM.Route path={config.urls.send_sms} component={SendSMS} />
+      <ReactRouterDOM.Redirect from='/' to={config.urls.templates} />
+    </ReactRouterDOM.Switch>
+  </ReactRouterDOM.BrowserRouter>,
 document.getElementById('root'))

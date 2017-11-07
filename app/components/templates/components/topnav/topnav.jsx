@@ -1,9 +1,7 @@
 import Create from '../modal-create/modal-create.jsx'
-import React, {Component} from 'react'
-import PropTypes from 'prop-types'
 import './topnav.styl'
 
-class Topnav extends Component {
+export default class Topnav extends React.Component {
   constructor () {
     super()
     this.state = {
@@ -32,4 +30,3 @@ class Topnav extends Component {
 Topnav.propTypes = {
   update: PropTypes.func.isRequired
 }
-export default Topnav

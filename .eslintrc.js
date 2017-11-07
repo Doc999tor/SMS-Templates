@@ -5,15 +5,19 @@ module.exports = {
   },
   "extends": ["standard", "standard-react"],
   "globals": {
-    "describe": false,
-    "element": false,
-    "expect": false,
-    "browser": true,
-    "moment": false,
-    "config": false,
-    "before":false,
-    "it": false,
-    "by": false
+    ReactRouterDOM: false,
+    PropTypes: false,
+    describe: false,
+    ReactDOM: false,
+    element: false,
+    expect: false,
+    browser: true,
+    config: false,
+    moment: false,
+    before:false,
+    React: false,
+    it: false,
+    by: false
   },
   "parser": "babel-eslint",
   "parserOptions": {

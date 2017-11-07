@@ -1,9 +1,8 @@
 import Message from './components/message/message.jsx'
 import Topnav from './components/topnav/topnav.jsx'
-import React, {Component} from 'react'
 import './send-sms.styl'
 
-class sendSMS extends Component {
+export default class sendSMS extends React.Component {
   render () {
     return (
       <div id='send-sms'>
@@ -14,4 +13,3 @@ class sendSMS extends Component {
     )
   }
 }
-export default sendSMS
