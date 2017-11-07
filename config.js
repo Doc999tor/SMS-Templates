@@ -1,4 +1,11 @@
 var config = {
+  user: {
+    // admin, senior, junior, readonly, untrusted
+    'permission_level': 'senior',
+    'business_id': 123,
+    'worker_id': 1
+  },
+  plugins_list: ['base', 'multiple_workers', 'colors', 'big_gallery', 'highres_photos', 'medical_records'],
   MAX_ASCII_PAGE: 160,
   MAX_ASCII_NEXT_PAGES: 146,
   MAX_UNICODE_FIRST_PAGE: 70,
