@@ -51,7 +51,12 @@ module.exports = env => {
     },
     devServer: {
       historyApiFallback: true,
-      stats: 'errors-only',
+      stats: {
+        version: false,
+        modules: false,
+        assets: false,
+        hash: false
+      },
       port: '3000'
     },
     plugins: [

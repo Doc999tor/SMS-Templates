@@ -19,7 +19,10 @@ export default class Topnav extends React.Component {
           </div>
           <div className='reminders'><h1>{config.translations.templates}</h1></div>
           <div className={'icons-r ' + (config.isRtL ? 'left' : 'right')}>
-            <div className='icon'><img className='add' src={config.urls.media + 'add.svg'} onClick={this.handleCreateModal} /></div>
+            <div className='icon'>
+              {(config.user.permission_level === 'senior' || config.user.permission_level === 'admin') &&
+                <img className='add' src={config.urls.media + 'add.svg'} onClick={this.handleCreateModal} />}
+            </div>
             <div className='icon'><img className='more' src={config.urls.media + 'more.svg'} /></div>
           </div>
         </div>

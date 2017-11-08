@@ -9,7 +9,8 @@ export default class Create extends React.Component {
       isActivePreview: false,
       preview: '',
       name: '',
-      text: ''
+      text: '',
+      acces: (config.user.permission_level === 'senior' || config.user.permission_level === 'admin')
     }
   }
   save = () => {
@@ -61,7 +62,7 @@ export default class Create extends React.Component {
   }
   addTag = i => {
     this.setState({text: this.state.text + config.translations.tags[i] + ' '})
-    this.insertHTML(`<span class='tag' contenteditable='false' onclick='removeTag(this)'>${config.translations.tags[i]}</span>` + ' ')
+    this.insertHTML(`<span class='tag' contenteditable='false' onclick=${this.state.acces ? 'removeTag(this)' : ''}>${config.translations.tags[i]}</span>` + ' ')
     this.setCursor()
   }
   init = () => {
@@ -79,7 +80,7 @@ export default class Create extends React.Component {
   componentDidMount () {
     if (this.props.isEdit) {
       this.refs.text.innerHTML = config.templates[this.props.i].text.replace(/\$\$(?:\w+)\$\$/gm, i =>
-        `<span class='tag' contenteditable='false' onclick='removeTag(this)'>${config.translations.tags[i.slice(2, -2)]}</span>`)
+        `<span class='tag' contenteditable='false' onclick=${this.state.acces ? 'removeTag(this)' : ''}>${config.translations.tags[i.slice(2, -2)]}</span>`)
       this.setState({name: config.templates[this.props.i].name, text: this.refs.text.innerText})
     }
   }
@@ -96,16 +97,19 @@ export default class Create extends React.Component {
           <div className={this.state.isActivePreview ? 'hidden' : 'create ' + (lenght.isOk ? 'ch445' : 'ch420')}>
             <h1 className='name'>{config.translations.title}</h1>
             <input type='text' value={this.state.name} placeholder={config.translations.title_pl}
-              onChange={e => this.setState({name: e.target.value})} />
+              disabled={!this.state.acces} onChange={e => this.setState({name: e.target.value})} />
             <h1 className='text'>{config.translations.content}</h1>
-            <div className='text-input' id='main_text_input' ref='text' contentEditable onBlur={e => this.setState({text: e.target.innerText})}
-              onKeyUp={e => this.setState({text: e.target.innerText})} placeholder={config.translations.message_pl}
-              onClick={e => this.setState({text: e.target.innerText})} />
+            <div className='text-input' id='main_text_input' ref='text' contentEditable={this.state.acces} placeholder={config.translations.message_pl}
+              onBlur={e => this.setState({text: e.target.innerText})}
+              onFocus={e => this.setState({text: e.target.innerText})}
+              onKeyUp={e => this.setState({text: e.target.innerText})}
+              // onClick={e => this.setState({text: e.target.innerText})}
+            />
             <h1 className='counter'>{lenght.str}</h1>
             <h1 className={lenght.isOk ? 'message' : 'hidden'}>{config.translations.message.replace('{pages}', config.max_sms_pages)}</h1>
             <h1 className='tags'>{config.translations.tags_label}</h1>
             {Object.keys(config.translations.tags).map(i => <button key={i} className='tag-list'
-              onClick={() => this.addTag(i)}>{config.translations.tags[i]}</button>)}
+              onClick={() => { this.state.acces && this.addTag(i) }}>{config.translations.tags[i]}</button>)}
           </div>
           <div className={this.state.isActivePreview ? 'preview-content ' + (lenght.isOk ? 'ch445' : 'ch420') : 'hidden'}>
             <div className='content'>{this.state.preview}</div>
@@ -118,7 +122,7 @@ export default class Create extends React.Component {
         </div>
         <div className='create-footer'>
           <button className={config.isRtL ? 'radiusRight' : 'radiusLeft'} onClick={this.cancel}>{config.translations.cancel}</button>
-          <button className={config.isRtL ? 'radiusLeft' : 'radiusRight'}
+          <button className={config.isRtL ? 'radiusLeft' : 'radiusRight'} disabled={!this.state.acces}
             onClick={this.props.isEdit ? this.update : this.save}>{config.translations.save}</button>
         </div>
       </Modal>
