@@ -1,5 +1,6 @@
 import {Modal} from 'project-components'
 import './modal-templates.styl'
+const Link = ReactRouterDOM.Link
 
 export default class Templates extends React.Component {
   cancel = () => this.props.handleModalTemplates()
@@ -23,7 +24,7 @@ export default class Templates extends React.Component {
               </div>)
           })}
         </div>
-        <div className='to-templates'><ReactRouterDOM.Link to={config.urls.templates}>{config.translations.to_templates_list}</ReactRouterDOM.Link></div>
+        <div className='to-templates'><Link to={config.urls.templates}>{config.translations.to_templates_list}</Link></div>
       </Modal>
     )
   }

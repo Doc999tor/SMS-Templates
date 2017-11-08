@@ -1,6 +1,7 @@
 import Templates from './components/templates/templates.jsx'
 import SendSMS from './components/send-sms/send-sms.jsx'
 import './main.styl'
+const {BrowserRouter, Redirect, Switch, Route} = ReactRouterDOM
 
 window.removeTag = p => {
   p.parentNode.removeChild(p)
@@ -8,11 +9,11 @@ window.removeTag = p => {
 }
 
 ReactDOM.render(
-  <ReactRouterDOM.BrowserRouter>
-    <ReactRouterDOM.Switch>
-      <ReactRouterDOM.Route exact path={config.urls.templates} component={Templates} />
-      <ReactRouterDOM.Route path={config.urls.send_sms} component={SendSMS} />
-      <ReactRouterDOM.Redirect from='/' to={config.urls.templates} />
-    </ReactRouterDOM.Switch>
-  </ReactRouterDOM.BrowserRouter>,
-document.getElementById('root'))
+  <BrowserRouter>
+    <Switch>
+      <Route exact path={config.urls.templates} component={Templates} />
+      <Route path={config.urls.send_sms} component={SendSMS} />
+      <Redirect from='/' to={config.urls.templates} />
+    </Switch>
+  </BrowserRouter>,
+  document.getElementById('root'))
