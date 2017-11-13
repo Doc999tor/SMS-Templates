@@ -2,11 +2,11 @@ import Create from '../modal-create/modal-create.jsx'
 import './topnav.styl'
 
 export default class Topnav extends React.Component {
-  constructor () {
-    super()
-    this.state = {
-      isVisibleCreateModal: false
-    }
+  static propTypes = {
+    update: PropTypes.func.isRequired
+  }
+  state = {
+    isVisibleCreateModal: false
   }
   handleCreateModal = () => this.setState({isVisibleCreateModal: !this.state.isVisibleCreateModal}, () => this.props.update())
   render () {
@@ -29,7 +29,4 @@ export default class Topnav extends React.Component {
       </div>
     )
   }
-}
-Topnav.propTypes = {
-  update: PropTypes.func.isRequired
 }

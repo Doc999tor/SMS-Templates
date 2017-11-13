@@ -4,13 +4,13 @@ import {Swiper} from 'project-components'
 import './templates-list.styl'
 
 export default class TemplatesList extends React.Component {
-  constructor () {
-    super()
-    this.state = {
-      isVisibleCreateModalContex: false,
-      isVisibleModalConfirmed: false,
-      isVisibleCreateModal: false
-    }
+  static propTypes = {
+    update: PropTypes.func.isRequired
+  }
+  state = {
+    isVisibleCreateModalContex: false,
+    isVisibleModalConfirmed: false,
+    isVisibleCreateModal: false
   }
   findIndex = id => {
     let ind
@@ -56,7 +56,4 @@ export default class TemplatesList extends React.Component {
       </div>
     )
   }
-}
-TemplatesList.propTypes = {
-  update: PropTypes.func.isRequired
 }

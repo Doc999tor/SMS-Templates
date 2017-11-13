@@ -3,15 +3,18 @@ import {templatePostService} from 'project-services'
 import './modal-create.styl'
 
 export default class Create extends React.Component {
-  constructor () {
-    super()
-    this.state = {
-      isActivePreview: false,
-      preview: '',
-      name: '',
-      text: '',
-      acces: (config.user.permission_level === 'senior' || config.user.permission_level === 'admin')
-    }
+  static propTypes = {
+    isVisibleCreateModal: PropTypes.bool.isRequired,
+    handleCreateModal: PropTypes.func.isRequired,
+    isEdit: PropTypes.bool,
+    i: PropTypes.number
+  }
+  state = {
+    isActivePreview: false,
+    preview: '',
+    name: '',
+    text: '',
+    acces: (config.user.permission_level === 'senior' || config.user.permission_level === 'admin')
   }
   save = () => {
     const text = replaceTags(this.state.text, true)
@@ -128,10 +131,4 @@ export default class Create extends React.Component {
       </Modal>
     )
   }
-}
-Create.propTypes = {
-  isVisibleCreateModal: PropTypes.bool.isRequired,
-  handleCreateModal: PropTypes.func.isRequired,
-  isEdit: PropTypes.bool,
-  i: PropTypes.number
 }

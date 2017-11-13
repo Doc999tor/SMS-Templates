@@ -6,17 +6,14 @@ import Failed from '../modal-failed/modal-failed.jsx'
 import './message.styl'
 
 export default class Message extends React.Component {
-  constructor () {
-    super()
-    this.state = {
-      isVisibleModalTemplates: false,
-      isVisibleModalSMSCount: false,
-      isVisibleModalSuccess: false,
-      isVisibleModalFailed: false,
-      isActivePreview: false,
-      preview: '',
-      text: ''
-    }
+  state = {
+    isVisibleModalTemplates: false,
+    isVisibleModalSMSCount: false,
+    isVisibleModalSuccess: false,
+    isVisibleModalFailed: false,
+    isActivePreview: false,
+    preview: '',
+    text: ''
   }
   setCursor = () => {
     this.refs.text_send.childNodes.forEach(i => {
