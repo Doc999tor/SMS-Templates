@@ -73,7 +73,7 @@ var config = {
     }
   ],
   urls: {
-    main: 'http://api.bewebmaster.co.il',
+    main: 'https://api.bewebmaster.co.il',
     templates: '/templates',
     media: './dist/media/',
     send_sms: '/send-sms'
