@@ -1,8 +1,10 @@
+import AccessRights from '../../../access-rights/access-rights.jsx'
 import Create from '../modal-create/modal-create.jsx'
 import './topnav.styl'
 
-export default class Topnav extends React.Component {
+class Topnav extends React.Component {
   static propTypes = {
+    rights: PropTypes.object.isRequired,
     update: PropTypes.func.isRequired
   }
   state = {
@@ -20,7 +22,7 @@ export default class Topnav extends React.Component {
           <div className='reminders'><h1>{config.translations.templates}</h1></div>
           <div className={'icons-r ' + (config.isRtL ? 'left' : 'right')}>
             <div className='icon'>
-              {(config.user.permission_level === 'senior' || config.user.permission_level === 'admin') &&
+              {this.props.rights.add &&
                 <img className='add' src={config.urls.media + 'add.svg'} onClick={this.handleCreateModal} />}
             </div>
             <div className='icon'><img className='more' src={config.urls.media + 'more.svg'} /></div>
@@ -30,3 +32,4 @@ export default class Topnav extends React.Component {
     )
   }
 }
+export default AccessRights(Topnav)

@@ -1,7 +1,7 @@
 var config = {
   user: {
     // admin, senior, junior, readonly, untrusted
-    permission_level: 'senior',
+    permission_level: 'admin',
     business_id: 123,
     worker_id: 1
   },

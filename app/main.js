@@ -5,8 +5,7 @@ const {BrowserRouter, Redirect, Switch, Route} = ReactRouterDOM
 
 window.removeTag = p => {
   p.parentNode.removeChild(p)
-  document.getElementById('main_text_input').blur()
-  document.getElementById('main_text_input').focus()
+  document.getElementById('main_text_input').click()
 }
 
 ReactDOM.render(
