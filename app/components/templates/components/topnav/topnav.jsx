@@ -8,16 +8,24 @@ class Topnav extends React.Component {
     update: PropTypes.func.isRequired
   }
   state = {
+    isVisibleCreateModalContex: false,
     isVisibleCreateModal: false
   }
-  handleCreateModal = () => this.setState({isVisibleCreateModal: !this.state.isVisibleCreateModal}, () => this.props.update())
+  handleCreateModal = () => {
+    this.setState({isVisibleCreateModal: !this.state.isVisibleCreateModal})
+    if (this.state.isVisibleCreateModalContex) setTimeout(() => this.setState({isVisibleCreateModalContex: false}), 300)
+    else this.setState({isVisibleCreateModalContex: true})
+    this.props.update()
+  }
   render () {
     return (
       <div id='topnav'>
-        <Create handleCreateModal={this.handleCreateModal} isVisibleCreateModal={this.state.isVisibleCreateModal} />
+        {this.state.isVisibleCreateModalContex &&
+          <Create handleCreateModal={this.handleCreateModal} isVisibleCreateModal={this.state.isVisibleCreateModal} />}
         <div className='header'>
           <div className={'icons-l ' + (config.isRtL ? 'right' : 'left')}>
-            <div className={'icon ' + (config.isRtL ? 'right' : 'left')} onClick={() => { window.history.go(-1) }}><img className={'arrow-back ' + (config.isRtL && 'arrow-back-mr')} src={config.urls.media + 'arrow-back.svg'} /></div>
+            <div className={'icon ' + (config.isRtL ? 'right' : 'left')} onClick={() => window.history.go(-1)}>
+              <img className={'arrow-back ' + (config.isRtL && 'arrow-back-mr')} src={config.urls.media + 'arrow-back.svg'} /></div>
           </div>
           <div className='reminders'><h1>{config.translations.templates}</h1></div>
           <div className={'icons-r ' + (config.isRtL ? 'left' : 'right')}>

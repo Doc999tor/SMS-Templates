@@ -104,7 +104,7 @@ class Create extends React.Component {
               disabled={!this.props.rights.name} onChange={e => this.setState({name: e.target.value})} />
             <h1 className='text'>{config.translations.content}</h1>
             <div className='text-input' id='main_text_input' ref='text' contentEditable={this.props.rights.text} placeholder={config.translations.message_pl}
-              onClick={() => this.setState({text: this.refs.text.innerText})}
+              onClick={e => this.setState({text: e.target.innerText})}
               onKeyUp={e => this.setState({text: e.target.innerText})}
               onBlur={e => this.setState({text: e.target.innerText})}
             />
