@@ -1,4 +1,4 @@
-import {mainRequestService} from './request.service'
+import {default as mainRequestService} from './request.service'
 
 export const postService = body => {
   const mainUrl = config.urls.main + config.urls.templates
