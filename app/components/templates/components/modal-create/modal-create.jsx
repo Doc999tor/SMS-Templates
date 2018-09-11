@@ -18,8 +18,9 @@ class Create extends React.Component {
     text: ''
   }
   save = () => {
+    let date = moment().format('YYYY-MM-DD hh:mm:ss')
     const text = replaceTags(this.state.text, true)
-    const b = `name=${this.state.name}&text=${text}`
+    const b = `name=${this.state.name}&text=${text}&added=${date}`
     templatePostService(b).then(r => {
       if (r.status === 201) {
         r.json().then(r => {
@@ -91,6 +92,7 @@ class Create extends React.Component {
   componentDidUpdate = () => this.props.isVisibleCreateModal && this.init()
   render () {
     let lenght = checkLength(this.state.text)
+    // console.log(moment())
     return (
       <Modal show={this.props.isVisibleCreateModal} dialogClassName='main-modal-dialog' onHide={this.cancel}>
         <div className='create-header'>
