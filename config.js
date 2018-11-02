@@ -1,6 +1,9 @@
 var config = {
   user: {
     // admin, senior, junior, readonly, untrusted
+    business_logo: 'public/business_data/1/logo.jpg',
+    business_name: 'Beauty and cosmetics salons',
+    business_address: '11301 West Olympic Boulevard, Apt.100',
     permission_level: 'admin',
     business_id: 123,
     worker_id: 1
@@ -13,7 +16,29 @@ var config = {
   sms_bank: 150,
   max_sms_pages: 4,
   // isRtL: true,
+  menu: [
+    { text: 'calendar', link: '/en/calendar', icon: 'calendar.jpg' },
+    { text: 'clients_list', link: '/en/clients_list', icon: 'clients_list.jpg' },
+    { text: 'reminders', link: '/en/reminders', icon: 'reminders.jpg' },
+    { text: 'groups', link: '/en/groups', icon: 'groups.jpg' },
+    { text: 'services', link: '/en/services', icon: 'services.jpg' },
+    { text: 'support', link: '/en/support', icon: 'support.jpg' },
+    { text: 'suggest_feature', link: '/en/suggest_feature', icon: 'suggest_feature.jpg' },
+    { text: 'rate_us', link: '/en/rate_us', icon: 'rate_us.jpg' },
+    { text: 'logout', link: '/e n/logout', icon: 'logout.jpg' }
+  ],
   translations: {
+    menu: {
+      calendar: 'Calendar',
+      clients_list: 'Clients list',
+      reminders: 'Reminders',
+      groups: 'Groups',
+      services: 'Services',
+      support: 'Support',
+      suggest_feature: 'Suggest a feature',
+      rate_us: 'Rate us',
+      logout: 'Log out'
+    },
     templates: 'Templates',
     add_template: 'Add template',
     title: 'Title',
@@ -76,6 +101,7 @@ var config = {
     main: 'https://api.bewebmaster.co.il',
     templates: '/templates',
     media: './dist/media/',
+    menu_icons: './dist/menu/',
     send_sms: '/send-sms'
   },
   tags_list: {
