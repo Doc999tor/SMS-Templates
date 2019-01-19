@@ -7,8 +7,8 @@ const Templates = ({isVisibleModalTemplates, handleModalTemplates, getTemplate})
   return (
     <Modal show={isVisibleModalTemplates} dialogClassName='main-modal-dialog' onHide={cancel}>
       <div className='templates-header'>
-        <h1 className={config.isRtL ? 'pd-r' : 'pd-l'} >{config.translations.templates_list}</h1>
-        <img className={config.isRtL ? 'left' : 'right'} src={config.urls.media + 'add.svg'} onClick={cancel} />
+        <h1 className={config.isRTL ? 'pd-r' : 'pd-l'} >{config.translations.templates_list}</h1>
+        <img className={config.isRTL ? 'left' : 'right'} src={config.urls.media + 'add.svg'} onClick={cancel} />
       </div>
       <div className='templates-body'>
         {config.templates.filter(i => i.type === 'common').map(i => {

@@ -3,7 +3,7 @@ import Topnav from './components/topnav/topnav.jsx'
 import './templates.styl'
 
 export default class Templates extends React.Component {
-  componentWillMount = () => { if (config.isRtL) document.getElementsByTagName('body')[0].style.direction = 'rtl' }
+  componentWillMount = () => { if (config.isRTL) document.getElementsByTagName('body')[0].style.direction = 'rtl' }
   update = () => this.forceUpdate()
   render () {
     return (

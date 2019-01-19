@@ -10,8 +10,8 @@ const Delete = ({isVisibleModalConfirmed, handleConfirmedModal, i}) => {
   return (
     <Modal show={isVisibleModalConfirmed} dialogClassName='main-modal-dialog' onHide={cancel}>
       <div className='delete-header'>
-        <h1 className={config.isRtL ? 'pd-r' : 'pd-l'} >{config.translations.delete_tem}</h1>
-        <img className={config.isRtL ? 'left' : 'right'} src={config.urls.media + 'add.svg'} onClick={cancel} />
+        <h1 className={config.isRTL ? 'pd-r' : 'pd-l'} >{config.translations.delete_tem}</h1>
+        <img className={config.isRTL ? 'left' : 'right'} src={config.urls.media + 'add.svg'} onClick={cancel} />
       </div>
       <div className='delete-body'>
         <h1>{config.translations.del_template}</h1>

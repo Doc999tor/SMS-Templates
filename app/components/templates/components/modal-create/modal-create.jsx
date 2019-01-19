@@ -96,8 +96,8 @@ class Create extends React.Component {
     return (
       <Modal show={this.props.isVisibleCreateModal} dialogClassName='main-modal-dialog' onHide={this.cancel}>
         <div className='create-header'>
-          <h1 className={config.isRtL ? 'pd-r' : 'pd-l'}>{this.props.isEdit ? config.translations.edit_template : config.translations.add_template}</h1>
-          <img className={config.isRtL ? 'left' : 'right'} src={config.urls.media + 'add.svg'} onClick={this.cancel} />
+          <h1 className={config.isRTL ? 'pd-r' : 'pd-l'}>{this.props.isEdit ? config.translations.edit_template : config.translations.add_template}</h1>
+          <img className={config.isRTL ? 'left' : 'right'} src={config.urls.media + 'add.svg'} onClick={this.cancel} />
         </div>
         <div className='create-body'>
           <div className={this.state.isActivePreview ? 'hidden' : 'create ' + (lenght.isOk ? 'ch445' : 'ch420')}>
@@ -126,8 +126,8 @@ class Create extends React.Component {
           </div>
         </div>
         <div className='create-footer'>
-          <button className={config.isRtL ? 'radiusRight' : 'radiusLeft'} onClick={this.cancel}>{config.translations.cancel}</button>
-          <button className={config.isRtL ? 'radiusLeft' : 'radiusRight'} disabled={!this.props.rights.save}
+          <button className={config.isRTL ? 'radiusRight' : 'radiusLeft'} onClick={this.cancel}>{config.translations.cancel}</button>
+          <button className={config.isRTL ? 'radiusLeft' : 'radiusRight'} disabled={!this.props.rights.save}
             onClick={this.props.isEdit ? this.update : this.save}>{config.translations.save}</button>
         </div>
       </Modal>
