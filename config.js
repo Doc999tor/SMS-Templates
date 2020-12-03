@@ -15,7 +15,7 @@ var config = {
   MAX_UNICODE_NEXT_PAGES: 63,
   sms_bank: 150,
   max_sms_pages: 4,
-  isRTL: true,
+  isRTL: false,
   menu: [
     { text: 'calendar', link: '/en/calendar', icon: 'calendar.jpg' },
     { text: 'clients_list', link: '/en/clients_list', icon: 'clients_list.jpg' },
@@ -38,6 +38,20 @@ var config = {
       suggest_feature: 'Suggest a feature',
       rate_us: 'Rate us',
       logout: 'Log out'
+    },
+    bulk_sms: {
+      main_title: 'Bulk SMS',
+      recipients_label: 'Recipients:',
+      amt_clients: '{amt} clients',
+      bulk_sms_form: {
+        input_placeholder: 'Text message',
+        characters_label: 'Characters:',
+        preview_btn_label: 'preview',
+        tags_strip_title: 'Tags(quick fill):',
+        cancel_btn_label: 'Cancel',
+        send_btn_label: 'Send'
+      }
+
     },
     templates: 'Templates',
     add_template: 'Add template',

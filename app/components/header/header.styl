@@ -1,0 +1,28 @@
+#header
+  background-color var(--dark-color)
+  height 3.5rem
+  position relative
+  display flex
+  justify-content center
+  align-items center
+  .go-back
+    position absolute
+    border none
+    outline none
+    height 100%
+    padding 0 1rem
+    background transparent
+  .page_title
+    font-size 1.25rem
+    font-weight 500
+    color var(--white-color)
+body[style='direction: rtl;']
+  #header
+    .go-back
+      right 0
+      img
+        transform: scale(-1, 1)
+body[style='direction: ltr;']
+  #header
+    .go-back
+      left 0

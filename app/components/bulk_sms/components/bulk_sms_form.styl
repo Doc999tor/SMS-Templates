@@ -1,0 +1,82 @@
+.bulk-sms-form
+  padding-top 0.5rem
+  .template
+    width 100%
+    font-family inherit
+    resize none
+    background-color var(--sec-color)
+    border 2px solid var(--sec-color)
+    border-radius 0.625rem
+    padding 0.75rem 1rem
+    outline none
+    transition border-color 0.5s, background-color 0.5s
+    &:focus
+      background-color var(--white-color)
+      border-color var(--dark-color)
+      transition border-color 0.5s, background-color 0.5s
+  .characters
+    font-size 0.875rem
+    color #69738d
+    padding 0.2rem 0 0.75rem
+  .preview_btn
+    border none
+    outline none
+    width 100%
+    display flex
+    align-items center
+    justify-content center
+    background-color var(--dark-color)
+    font-size 0.875rem
+    font-weight 500
+    border-radius 0.5rem
+    min-height 2.375rem
+    text-transform uppercase
+    color var(--white-color)
+    img
+      -moz-margin-end 0.5rem
+      -webkit-margin-end 0.5rem
+      margin-inline-end 0.5rem
+  .inactive_btn
+    opacity 0.5
+  .tags_strip
+    padding-top 1.5rem
+    .tags_strip_title
+      font-size 1.125rem
+      font-weight 500
+  .btns_wrapper
+    position fixed
+    bottom 0
+    left 0
+    width 100%
+    z-index 10
+    .btns_sections
+      margin 0 auto
+      width 100%
+      max-width 640px
+      display flex
+      justify-content space-between
+      background-color var(--white-color)
+      box-shadow 0 0 12px 0 rgba(41, 41, 204, 0.2)
+      padding 0.75rem 1rem
+      height 4.5rem
+      button
+        outline none 
+        border none
+        width 48.5%
+        border-radius 0.5rem
+        display flex
+        align-items center
+        justify-content center
+        text-transform uppercase
+        font-size 0.875rem
+        font-weight 500
+        img
+          -moz-margin-end 0.5rem
+          -webkit-margin-end 0.5rem
+          margin-inline-end 0.5rem
+      .cancel
+        background-color var(--sec-color)
+        color var(--dark-color)
+      .send
+        background-color var(--dark-color)
+        color var(--white-color)

@@ -1,6 +1,7 @@
 import Templates from '../modal-templates/modal-templates.jsx'
 import SMSCount from '../modal-sms-count/modal-sms-count.jsx'
-import {checkLength, replaceTags} from 'project-components'
+import replaceTags from 'project-components/replaceTags.js'
+import checkLength from 'project-components/checkLength.js'
 import Success from '../modal-success/modal-success.jsx'
 import Failed from '../modal-failed/modal-failed.jsx'
 import './message.styl'

@@ -1,4 +1,4 @@
-import {Modal} from 'project-components'
+import Modal from 'project-components/Modal/Modal.jsx'
 import './modal-failed.styl'
 
 const Failed = ({isVisibleModalFailed, handleModalFailed}) => {
