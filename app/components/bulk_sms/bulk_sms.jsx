@@ -1,6 +1,6 @@
 import React from 'react'
 
-import BulkSmsForm from './components/bulk_sms_form'
+import BulkSmsForm from './components/bulk_sms_form/bulk_sms_form'
 
 import './bulk_sms.styl'
 

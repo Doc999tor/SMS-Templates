@@ -50,8 +50,11 @@ var config = {
         tags_strip_title: 'Tags(quick fill):',
         cancel_btn_label: 'Cancel',
         send_btn_label: 'Send'
+      },
+      preview_popup: {
+        title_label: 'SMS Preview',
+        button_label: 'Okay'
       }
-
     },
     templates: 'Templates',
     add_template: 'Add template',
@@ -83,19 +86,56 @@ var config = {
     sms_exhausted: 'Stock SMS exhausted',
     back: 'Back',
     up_balance: 'Top up balance',
+    // tags: {
+    //   business_name: 'Business Name',
+    //   business_phone_number: 'Business Phone Number',
+    //   business_address: 'Business Address',
+    //   business_facebook_link: 'Business Facebook Link',
+    //   business_website_link: 'Business Website Link',
+    //   client_first_name: 'Client First Name',
+    //   client_last_name: 'Client Last Name',
+    //   client_next_appointment_date: 'Client Next Appointment Date',
+    //   client_next_appointment_time: 'Client Next Appointment Time',
+    //   client_next_appointment_procedures_list: 'Client Next Appointment Procedures List',
+    //   online_booking_link: 'Our Online Booking Link'
+    // }
     tags: {
-      business_name: 'Business Name',
-      business_phone_number: 'Business Phone Number',
-      business_address: 'Business Address',
-      business_facebook_link: 'Business Facebook Link',
-      business_website_link: 'Business Website Link',
-      client_first_name: 'Client First Name',
-      client_last_name: 'Client Last Name',
-      client_next_appointment_date: 'Client Next Appointment Date',
-      client_next_appointment_time: 'Client Next Appointment Time',
-      client_next_appointment_procedures_list: 'Client Next Appointment Procedures List',
-      online_booking_link: 'Our Online Booking Link'
+      business_name: {
+        label: "Business Name",
+        preview_text: "Hair Style Ashdod",
+        average_length: 17,
+      },
+      business_phone_number: {
+        label: "Business Phone Number",
+        preview_text: "0541234567",
+        average_length: 10,
+      },
+      business_location: {
+        label: "Business Address",
+        preview_text: "Rival St 32, Tel Aviv-Yafo",
+        average_length: 26,
+      },
+      business_facebook_url: {
+        label: "Business Facebook Link",
+        preview_text: "https://www.facebook.com/lista.crm/",
+        average_length: 36,
+      },
+      business_website_url: {
+        label: "Business Website",
+        preview_text: "https://lista-crm.com/en/home",
+        average_length: 23,
+      },
+      client_name: {
+        label: "Client Name",
+        preview_text: "Vasiliy",
+        average_length: 6,
+      },
+    },
+    unsubscribe_link: {
+      preview_text: "To unsubscribe click here: https://lista-crm.com/unsubscribe",
+		  average_length: 60,
     }
+
   },
   templates: [
     {
@@ -118,50 +158,50 @@ var config = {
     menu_icons: './dist/menu/',
     send_sms: '/send-sms'
   },
-  tags_list: {
-    business_name: {
-      value: 'Hair Style Ashdod',
-      average_length: 17
-    },
-    business_phone_number: {
-      value: '0541234567',
-      average_length: 10
-    },
-    business_address: {
-      value: 'Rival St 32, Tel Aviv-Yafo',
-      average_length: 26
-    },
-    business_facebook_link: {
-      value: 'https://www.facebook.com/bewebmaster',
-      average_length: 36
-    },
-    business_website_link: {
-      value: 'http://aquaplants.co.il',
-      average_length: 23
-    },
-    client_first_name: {
-      value: 'ישראל',
-      average_length: 6
-    },
-    client_last_name: {
-      value: 'ישראלי',
-      average_length: 6
-    },
-    client_next_appointment_date: {
-      value: '2017-11-01',
-      average_length: 10
-    },
-    client_next_appointment_time: {
-      value: '11:11',
-      average_length: 5
-    },
-    client_next_appointment_procedures_list: {
-      value: 'hair styling, Massage, Acupuncture',
-      average_length: 34
-    },
-    online_booking_link: {
-      value: 'http://fashion-in-israel.com',
-      average_length: 28
-    }
-  }
+  // tags_list: {
+  //   business_name: {
+  //     value: 'Hair Style Ashdod',
+  //     average_length: 17
+  //   },
+  //   business_phone_number: {
+  //     value: '0541234567',
+  //     average_length: 10
+  //   },
+  //   business_address: {
+  //     value: 'Rival St 32, Tel Aviv-Yafo',
+  //     average_length: 26
+  //   },
+  //   business_facebook_link: {
+  //     value: 'https://www.facebook.com/bewebmaster',
+  //     average_length: 36
+  //   },
+  //   business_website_link: {
+  //     value: 'http://aquaplants.co.il',
+  //     average_length: 23
+  //   },
+  //   client_first_name: {
+  //     value: 'ישראל',
+  //     average_length: 6
+  //   },
+  //   client_last_name: {
+  //     value: 'ישראלי',
+  //     average_length: 6
+  //   },
+  //   client_next_appointment_date: {
+  //     value: '2017-11-01',
+  //     average_length: 10
+  //   },
+  //   client_next_appointment_time: {
+  //     value: '11:11',
+  //     average_length: 5
+  //   },
+  //   client_next_appointment_procedures_list: {
+  //     value: 'hair styling, Massage, Acupuncture',
+  //     average_length: 34
+  //   },
+  //   online_booking_link: {
+  //     value: 'http://fashion-in-israel.com',
+  //     average_length: 28
+  //   }
+  // }
 }
