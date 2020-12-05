@@ -7,7 +7,8 @@ const TerserPlugin = require('terser-webpack-plugin')
 
 const alias = {
   'project-components': path.resolve('./components-lib'),
-  'project-services': path.resolve('./services')
+  'project-services': path.resolve('./services'),
+  'helpers': path.resolve('./helpers'),
 }
 module.exports = {
   entry: './app/main.js',

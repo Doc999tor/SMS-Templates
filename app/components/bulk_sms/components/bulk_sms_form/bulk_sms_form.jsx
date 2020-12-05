@@ -1,7 +1,8 @@
-import React, {useState} from 'react'
+import React, { useState, useRef } from 'react'
 
 import PreviewSMSPopup from '../preview_sms_popup/preview_sms_popup'
-import checkLength from 'project-components/checkLength.js'
+// import checkLength from 'project-components/checkLength.js'
+import replaceTags from 'helpers/replaceTags.js'
 
 import './bulk_sms_form.styl'
 
@@ -15,7 +16,9 @@ const {
 } = config.translations.bulk_sms.bulk_sms_form
 
 const BulkSmsForm = () => {
+  const inputEl = useRef(null);
   const [template, setTemplate] = useState('')
+  const [previewText, setPreviewText] = useState('')
   const [preview, setPreview] = useState(false)
   const [activePopup, setActivePopup] = useState(false)
   const handleShowPopup = () => setPreview(true)
@@ -27,11 +30,14 @@ const BulkSmsForm = () => {
     }, 300)
   }
   const handleAddTag = tag => {
-    const tagInText = ` &thinsp;<span class='tag' contentEditable='false'>${config.translations.tags[tag].label}</span>&thinsp; `
+    const tagInText = ` <span class='tag' contentEditable='false'>${config.translations.tags[tag].label}</span>&thinsp;`
     setTemplate(text => text + tagInText)
+    inputEl.current.focus()
   }
-  const handleBlurTemplate = ({ currentTarget: { innerHTML} }) => {
+  const handleBlurTemplate = ({ currentTarget, currentTarget: { innerHTML, innerText } }) => {
     setTemplate(innerHTML)
+    setPreviewText(replaceTags(innerText, false))
+
   }
   return (
     <>
@@ -39,6 +45,7 @@ const BulkSmsForm = () => {
         <p
           className='template'
           name='template'
+          ref={inputEl}
           contentEditable
           onBlur={handleBlurTemplate}
           placeholder={input_placeholder}
@@ -62,9 +69,8 @@ const BulkSmsForm = () => {
           </div>
         </div>
       </form>
-      {preview && <PreviewSMSPopup text={template} isActivePopup={activePopup} closePopup={handleClosePopup} />}
+      {preview && <PreviewSMSPopup text={previewText} isActivePopup={activePopup} closePopup={handleClosePopup} />}
     </>
-
   )
 }
 
