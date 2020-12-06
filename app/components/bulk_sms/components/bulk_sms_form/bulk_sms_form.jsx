@@ -1,8 +1,8 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 
 import PreviewSMSPopup from '../preview_sms_popup/preview_sms_popup'
-// import checkLength from 'project-components/checkLength.js'
 import replaceTags from 'helpers/replaceTags.js'
+import checkLength from 'helpers/checkLength.js'
 
 import './bulk_sms_form.styl'
 
@@ -21,6 +21,7 @@ const BulkSmsForm = () => {
   const [previewText, setPreviewText] = useState('')
   const [preview, setPreview] = useState(false)
   const [activePopup, setActivePopup] = useState(false)
+  const [length, setLength] = useState(0)
   const handleShowPopup = () => setPreview(true)
   const handleClosePopup = () => {
     setActivePopup(true)
@@ -30,15 +31,30 @@ const BulkSmsForm = () => {
     }, 300)
   }
   const handleAddTag = tag => {
-    const tagInText = ` <span class='tag' contentEditable='false'>${config.translations.tags[tag].label}</span>&thinsp;`
+    const tagInText = `<span class='tag' contentEditable='false'>${config.translations.tags[tag].label}</span> `
     setTemplate(text => text + tagInText)
-    inputEl.current.focus()
+    setPreviewText(replaceTags(inputEl.current?.innerText, false))
+    setTimeout(() => setCursor(), 10);
   }
-  const handleBlurTemplate = ({ currentTarget, currentTarget: { innerHTML, innerText } }) => {
+  const handleBlurTemplate = ({ currentTarget: { innerHTML, innerText } }) => {
     setTemplate(innerHTML)
     setPreviewText(replaceTags(innerText, false))
-
   }
+  const handleChangeInput = ({ currentTarget: { innerText } }) => {
+    setLength(checkLength(inputEl.current?.innerText))
+    setPreviewText(replaceTags(innerText, false))
+  }
+  const setCursor = () => {
+    const range = document.createRange();
+    range.selectNodeContents(inputEl.current);
+    range.collapse(false);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+  }
+  useEffect(() => {
+    setLength(checkLength(inputEl.current?.innerText))
+  }, [previewText, template])
   return (
     <>
       <form className='bulk-sms-form'>
@@ -48,12 +64,13 @@ const BulkSmsForm = () => {
           ref={inputEl}
           contentEditable
           onBlur={handleBlurTemplate}
+          onInput={handleChangeInput}
           placeholder={input_placeholder}
           dangerouslySetInnerHTML={{ __html: template }}
         >
         </p>
-        <p className='characters'>{characters_label} <span>{template.length}</span>/<span>{config.sms_bank}</span></p>
-        <button className={'preview_btn' + (template?.trim().length < 1 ? ' inactive_btn' : '')} type='button' onClick={handleShowPopup}><img src={`${config.urls.media}ic_preview.svg`} alt='' />{preview_btn_label}</button>
+        <p className={'characters' + (length > config.sms_page_size ? ' warning_length' : '')}>{characters_label} <span>{length || 0}</span>/<span>{config.sms_page_size}</span></p>
+        <button className={'preview_btn' + (+length < 1 ? ' inactive_btn' : '')} type='button' onClick={handleShowPopup}><img src={`${config.urls.media}ic_preview.svg`} alt='' />{preview_btn_label}</button>
         <div className='tags_strip'>
           <p className='tags_strip_title'>{tags_strip_title}</p>
           <div className='tags_list'>

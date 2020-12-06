@@ -15,6 +15,7 @@ var config = {
   MAX_UNICODE_NEXT_PAGES: 63,
   sms_bank: 150,
   max_sms_pages: 4,
+  sms_page_size: 150,
   isRTL: false,
   menu: [
     { text: 'calendar', link: '/en/calendar', icon: 'calendar.jpg' },
