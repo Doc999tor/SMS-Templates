@@ -16,6 +16,8 @@ var config = {
   sms_bank: 150,
   max_sms_pages: 4,
   sms_page_size: 150,
+  sms_credits: 150,
+  sms_page_size: 201,
   isRTL: false,
   menu: [
     { text: 'calendar', link: '/en/calendar', icon: 'calendar.jpg' },
@@ -56,6 +58,10 @@ var config = {
         title_label: 'SMS Preview',
         button_label: 'Okay'
       }
+    },
+    sending_popup: {
+      success: 'Bulk SMS sent successfully!',
+      sending: 'Sending'
     },
     templates: 'Templates',
     add_template: 'Add template',
@@ -158,6 +164,14 @@ var config = {
     media: './dist/media/',
     menu_icons: './dist/menu/',
     send_sms: '/send-sms'
+  },
+  tag_list: {
+    business_name: "$$business_name$$",
+    business_phone_number: "$$business_phone_number$$",
+    business_location: "$$business_location$$",
+    business_facebook_url: "$$business_facebook_url$$",
+    business_website_url: "$$business_website_url$$",
+    client_name: "$$client_name$$",
   },
   // tags_list: {
   //   business_name: {

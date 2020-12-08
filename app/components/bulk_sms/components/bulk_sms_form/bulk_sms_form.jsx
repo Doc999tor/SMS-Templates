@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 
 import PreviewSMSPopup from '../preview_sms_popup/preview_sms_popup'
+import SendingPopup from 'project-components/sending-popup/sending-popup'
 import replaceTags from 'helpers/replaceTags.js'
 import checkLength from 'helpers/checkLength.js'
 
@@ -21,8 +22,14 @@ const BulkSmsForm = () => {
   const [previewText, setPreviewText] = useState('')
   const [preview, setPreview] = useState(false)
   const [activePopup, setActivePopup] = useState(false)
+  const [sendingPopup, setSendingPopup] = useState(true)
+  const [showPopup, setShowPopup] = useState(false)
   const [length, setLength] = useState(0)
-  const handleShowPopup = () => setPreview(true)
+  const handleShowPopup = () => {
+    if (+length > 0) {
+      setPreview(true)
+    }
+  }
   const handleClosePopup = () => {
     setActivePopup(true)
     setTimeout(() => {
@@ -31,7 +38,7 @@ const BulkSmsForm = () => {
     }, 300)
   }
   const handleAddTag = tag => {
-    const tagInText = `<span class='tag' contentEditable='false'>${config.translations.tags[tag].label}</span> `
+    const tagInText = ` <span class='tag' contentEditable='false'>${config.translations.tags[tag].label}</span>  `
     setTemplate(text => text + tagInText)
     setPreviewText(replaceTags(inputEl.current?.innerText, false))
     setTimeout(() => setCursor(), 10);
@@ -55,9 +62,16 @@ const BulkSmsForm = () => {
   useEffect(() => {
     setLength(checkLength(inputEl.current?.innerText))
   }, [previewText, template])
+  const handleSendSMS = e => {
+    e.preventDefault()
+    if (+length > 0) {
+      setShowPopup(true)
+      console.log('Sending...')
+    }
+  }
   return (
     <>
-      <form className='bulk-sms-form'>
+      <form className='bulk-sms-form' onSubmit={handleSendSMS}>
         <p
           className='template'
           name='template'
@@ -75,18 +89,19 @@ const BulkSmsForm = () => {
           <p className='tags_strip_title'>{tags_strip_title}</p>
           <div className='tags_list'>
             {Object.keys(config.translations.tags).map(tag => {
-              return <span className='tag' key={config.translations.tags[tag].label} onClick={() => handleAddTag(tag)}>{config.translations.tags[tag].label}</span>
+              return <span className={'tag' + (inputEl.current?.innerText?.includes(config.translations.tags[tag].label) ? ' used_tag' : '')} key={config.translations.tags[tag].label} onClick={() => { !inputEl.current?.innerText?.includes(config.translations.tags[tag].label) && handleAddTag(tag)}}>{config.translations.tags[tag].label}</span>
             })}
           </div>
         </div>
         <div className='btns_wrapper'>
           <div className='btns_sections'>
-            <button className='cancel'><img src={`${config.urls.media}ic_cancel.svg`} alt='' />{cancel_btn_label}</button>
-            <button className='send'><img src={`${config.urls.media}ic_send.svg`} alt='' />{send_btn_label}</button>
+            <button className='cancel' type='button'><img src={`${config.urls.media}ic_cancel.svg`} alt='' />{cancel_btn_label}</button>
+            <button className={'send' + ((+length < 1 ? ' inactive_btn' : ''))} type='submit'><img src={`${config.urls.media}ic_send.svg`} alt='' />{send_btn_label}</button>
           </div>
         </div>
       </form>
       {preview && <PreviewSMSPopup text={previewText} isActivePopup={activePopup} closePopup={handleClosePopup} />}
+      {showPopup && <SendingPopup sendingPopup={sendingPopup} sending_label={config.translations.sending_popup.sending} success_label={config.translations.sending_popup.success} />}
     </>
   )
 }

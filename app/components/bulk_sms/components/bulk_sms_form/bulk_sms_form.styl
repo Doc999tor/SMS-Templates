@@ -7,6 +7,11 @@
     line-height 1
     background-color #f0e9ff
     color var(--dark-color)
+    opacity 1
+    transition opacity 0.5s
+  .used_tag
+    opacity 0.5
+    transition1 opacity 0.5s
   .template
     width 100%
     height 7rem
@@ -25,7 +30,7 @@
       content attr(placeholder)
       color #9ba1b3
     .tag
-      padding: 0 0.3rem
+      padding 0 0.3rem
       white-space nowrap
   .characters
     font-size 0.875rem
@@ -47,12 +52,12 @@
     min-height 2.375rem
     text-transform uppercase
     color var(--white-color)
+    opacity 1
+    transition opacity 0.5s
     img
       -moz-margin-end 0.5rem
       -webkit-margin-end 0.5rem
       margin-inline-end 0.5rem
-  .inactive_btn
-    opacity 0.5
   .tags_strip
     padding-top 1.5rem
     .tags_strip_title
@@ -89,12 +94,17 @@
           -moz-margin-end 0.5rem
           -webkit-margin-end 0.5rem
           margin-inline-end 0.5rem
-      .cancel
-        background-color var(--sec-color)
-        color var(--dark-color)
-      .send
-        background-color var(--dark-color)
-        color var(--white-color)
+  .cancel
+    background-color var(--sec-color)
+    color var(--dark-color)
+  .send
+    opacity 1
+    transition opacity 0.5s
+    background-color var(--dark-color)
+    color var(--white-color)
+  .inactive_btn
+    opacity 0.5
+    transition opacity 0.5s
   .tags_list
     padding-top 1rem
     display flex
