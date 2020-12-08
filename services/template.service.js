@@ -1,14 +1,12 @@
 import mainRequestService from 'project-components/request.service.js'
 
-export const postService = body => {
-  const mainUrl = config.urls.main + config.urls.templates
+export const postService = url => {
   const options = {
     mode: 'cors',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
     },
-    method: 'POST',
-    body
+    method: 'POST'
   }
-  return mainRequestService(mainUrl, options)
+  return mainRequestService(url, options)
 }

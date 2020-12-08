@@ -4,6 +4,9 @@ import PreviewSMSPopup from '../preview_sms_popup/preview_sms_popup'
 import SendingPopup from 'project-components/sending-popup/sending-popup'
 import replaceTags from 'helpers/replaceTags.js'
 import checkLength from 'helpers/checkLength.js'
+import NoSmsPopup from '../noSmsPopup/noSmsPopup'
+
+import { postService } from 'project-services/template.service.js'
 
 import './bulk_sms_form.styl'
 
@@ -16,7 +19,7 @@ const {
   cancel_btn_label
 } = config.translations.bulk_sms.bulk_sms_form
 
-const BulkSmsForm = () => {
+const BulkSmsForm = ({ clients, referrer }) => {
   const inputEl = useRef(null);
   const [template, setTemplate] = useState('')
   const [previewText, setPreviewText] = useState('')
@@ -24,6 +27,7 @@ const BulkSmsForm = () => {
   const [activePopup, setActivePopup] = useState(false)
   const [sendingPopup, setSendingPopup] = useState(true)
   const [showPopup, setShowPopup] = useState(false)
+  const [noSms, setNoSms] = useState(false)
   const [length, setLength] = useState(0)
   const handleShowPopup = () => {
     if (+length > 0) {
@@ -65,8 +69,25 @@ const BulkSmsForm = () => {
   const handleSendSMS = e => {
     e.preventDefault()
     if (+length > 0) {
-      setShowPopup(true)
-      console.log('Sending...')
+      const allowSending = config.sms_credits > Math.ceil(length/config.sms_page_size)*clients?.length
+      if (allowSending) {
+        setShowPopup(true)
+        const body = {
+          clients,
+          text: replaceTags(inputEl.current?.innerText, true)
+        }
+        const url = `${config.urls.send_sms}?body=${JSON.stringify(body)}`
+        console.log(replaceTags(inputEl.current?.innerText, true));
+        postService(url).then(({ status }) => {
+          if (status === 201) {
+            window.location = referrer
+          }
+        })
+      }
+      if (!allowSending) {
+        setNoSms(true)
+        setShowPopup(true)
+      }
     }
   }
   return (
@@ -102,6 +123,7 @@ const BulkSmsForm = () => {
       </form>
       {preview && <PreviewSMSPopup text={previewText} isActivePopup={activePopup} closePopup={handleClosePopup} />}
       {showPopup && <SendingPopup sendingPopup={sendingPopup} sending_label={config.translations.sending_popup.sending} success_label={config.translations.sending_popup.success} />}
+      {/* {!noSms && <NoSmsPopup />} */}
     </>
   )
 }

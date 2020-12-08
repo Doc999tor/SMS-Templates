@@ -63,6 +63,10 @@ var config = {
       success: 'Bulk SMS sent successfully!',
       sending: 'Sending'
     },
+    no_sms_popup: {
+      text_label: 'You don’t have SMS to send this message! Buy SMS and try again please.',
+      buy_btn_lable: 'Buy sms'
+    },
     templates: 'Templates',
     add_template: 'Add template',
     title: 'Title',
@@ -159,11 +163,10 @@ var config = {
     }
   ],
   urls: {
-    main: 'https://api.bewebmaster.co.il',
     templates: '/templates',
     media: './dist/media/',
     menu_icons: './dist/menu/',
-    send_sms: '/send-sms'
+    send_sms: 'https://api.bewebmaster.co.il/send-sms'
   },
   tag_list: {
     business_name: "$$business_name$$",
