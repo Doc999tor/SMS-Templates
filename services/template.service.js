@@ -4,7 +4,7 @@ export const postService = url => {
   const options = {
     mode: 'cors',
     headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
+      'Content-Type': 'application/json'
     },
     method: 'POST'
   }

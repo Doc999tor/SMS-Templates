@@ -1,4 +1,4 @@
-.popup_wrap
+.nosms_wrap
   position fixed
   width 100%
   height 100%
@@ -10,7 +10,7 @@
   z-index 11
   background-color rgba(0, 0, 0, 0)
   animation background 0.3s forwards
-  .popup_body
+  .nosms_body
     position relative
     width 80%
     max-width 500px
@@ -21,9 +21,15 @@
     min-height 19.25rem
     background-color var(--white-color)
     border-radius 1rem
+    padding 2rem 1rem 1rem
     box-shadow 0 3px 20px 0 rgba(41, 41, 204, 0.2)
-    animation show_body 0.3s
+    animation show_nosms 0.3s
     .close_popup_btn
+      display flex
+      align-items center
+      justify-content center
+      width auto
+      height auto
       padding 0.75rem
       border none
       outline none
@@ -31,6 +37,8 @@
       position absolute
       top 0
       right 0
+      img
+        margin 0
     .common_circle
       width 5rem
       height 5rem
@@ -48,7 +56,7 @@
     .buy_sms_button
       width 100%
       border none
-      min-height 3rem
+      height 3rem
       display flex
       align-items center
       justify-content center
@@ -63,17 +71,21 @@
         -moz-margin-end 0.5rem
         -webkit-margin-end 0.5rem
         margin-inline-end 0.5rem
-@keyframes hide-body
+  .hide-nosms
+    animation hide-nosms 0.3s forwards
+.nosms-background
+  animation nosms-background 0.3s forwards
+@keyframes hide-nosms
   0%
     transform scale(1)
   100%
     transform scale(0)
-@keyframes hide-background 
+@keyframes nosms-background 
   0%
     background-color rgba(0, 0, 0, 0.3)
   100%
     background-color rgba(0, 0, 0, 0)
-@keyframes show_body
+@keyframes show_nosms
   0%
     transform scale(0)
 @keyframes background

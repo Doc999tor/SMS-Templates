@@ -7,9 +7,10 @@ const NoSmsPopup = ({
   btn_label,
   onBuySms,
 }) => {
+  const preventClick = e => e.stopPropagation()
   return (
-    <div className={'popup_wrap' + (isActivePopup ? ' hide-background' : '')}>
-      <div className={'popup_body' + (isActivePopup ? ' hide-body' : '')}>
+    <div className={'nosms_wrap' + (isActivePopup ? ' nosms-background' : '')} onClick={onClosePopup}>
+      <div className={'nosms_body' + (isActivePopup ? ' hide-nosms' : '')} onClick={preventClick}>
         <button type='button' className='close_popup_btn' onClick={onClosePopup}>
           <img src={`${config.urls.media}ic_close_blue.svg`} />
         </button>

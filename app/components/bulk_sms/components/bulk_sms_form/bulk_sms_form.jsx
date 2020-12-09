@@ -29,11 +29,17 @@ const BulkSmsForm = ({ clients, referrer }) => {
   const [showPopup, setShowPopup] = useState(false)
   const [noSms, setNoSms] = useState(false)
   const [length, setLength] = useState(0)
+
+  useEffect(() => {
+    setLength(checkLength(inputEl.current?.innerText))
+  }, [previewText, template])
+
   const handleShowPopup = () => {
     if (+length > 0) {
       setPreview(true)
     }
   }
+
   const handleClosePopup = () => {
     setActivePopup(true)
     setTimeout(() => {
@@ -41,20 +47,32 @@ const BulkSmsForm = ({ clients, referrer }) => {
       setActivePopup(false)
     }, 300)
   }
+
+  const handleCloseNoSmsPopup = () => {
+    setActivePopup(true)
+    setTimeout(() => {
+      setNoSms(false)
+      setActivePopup(false)
+    }, 300)
+  }
+
   const handleAddTag = tag => {
     const tagInText = ` <span class='tag' contentEditable='false'>${config.translations.tags[tag].label}</span>  `
     setTemplate(text => text + tagInText)
     setPreviewText(replaceTags(inputEl.current?.innerText, false))
     setTimeout(() => setCursor(), 10);
   }
+
   const handleBlurTemplate = ({ currentTarget: { innerHTML, innerText } }) => {
     setTemplate(innerHTML)
-    setPreviewText(replaceTags(innerText, false))
+    setPreviewText(`${replaceTags(innerText, false)} ${config.translations.unsubscribe_link.preview_text}`)
   }
+
   const handleChangeInput = ({ currentTarget: { innerText } }) => {
     setLength(checkLength(inputEl.current?.innerText))
     setPreviewText(replaceTags(innerText, false))
   }
+
   const setCursor = () => {
     const range = document.createRange();
     range.selectNodeContents(inputEl.current);
@@ -63,9 +81,7 @@ const BulkSmsForm = ({ clients, referrer }) => {
     sel.removeAllRanges();
     sel.addRange(range);
   }
-  useEffect(() => {
-    setLength(checkLength(inputEl.current?.innerText))
-  }, [previewText, template])
+
   const handleSendSMS = e => {
     e.preventDefault()
     if (+length > 0) {
@@ -74,22 +90,30 @@ const BulkSmsForm = ({ clients, referrer }) => {
         setShowPopup(true)
         const body = {
           clients,
-          text: replaceTags(inputEl.current?.innerText, true)
+          text: `${replaceTags(inputEl.current?.innerText, true)} ${config.translations.unsubscribe_link.preview_text}`
         }
-        const url = `${config.urls.send_sms}?body=${JSON.stringify(body)}`
-        console.log(replaceTags(inputEl.current?.innerText, true));
-        postService(url).then(({ status }) => {
+        const url = `${config.urls.send_sms}${location?.search}`
+        postService(url, body).then(({ status }) => {
           if (status === 201) {
-            window.location = referrer
+            setSendingPopup(false)
+            setTimeout(() => {
+              window.location = referrer
+            }, 500)
+          }
+          if (status === 409) {
+            handleClosePopup()
+            setNoSms(true)
           }
         })
       }
       if (!allowSending) {
         setNoSms(true)
-        setShowPopup(true)
       }
     }
   }
+
+  const handleBuySms = () => window.location.href = config.urls.sms_settings_link
+
   return (
     <>
       <form className='bulk-sms-form' onSubmit={handleSendSMS}>
@@ -121,9 +145,23 @@ const BulkSmsForm = ({ clients, referrer }) => {
           </div>
         </div>
       </form>
-      {preview && <PreviewSMSPopup text={previewText} isActivePopup={activePopup} closePopup={handleClosePopup} />}
-      {showPopup && <SendingPopup sendingPopup={sendingPopup} sending_label={config.translations.sending_popup.sending} success_label={config.translations.sending_popup.success} />}
-      {/* {!noSms && <NoSmsPopup />} */}
+      {preview && <PreviewSMSPopup
+        text={previewText}
+        isActivePopup={activePopup}
+        closePopup={handleClosePopup}
+      />}
+      {showPopup && <SendingPopup
+        sendingPopup={sendingPopup}
+        sending_label={config.translations.sending_popup.sending}
+        success_label={config.translations.sending_popup.success}
+      />}
+      {noSms && <NoSmsPopup
+        isActivePopup={activePopup}
+        onClosePopup={handleCloseNoSmsPopup}
+        btn_label={config.translations.no_sms_popup.buy_btn_lable}
+        text={config.translations.no_sms_popup.text_label}
+        onBuySms={handleBuySms}
+      />}
     </>
   )
 }

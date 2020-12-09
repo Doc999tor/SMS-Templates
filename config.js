@@ -175,6 +175,7 @@ var config = {
     business_facebook_url: "$$business_facebook_url$$",
     business_website_url: "$$business_website_url$$",
     client_name: "$$client_name$$",
+    sms_settings_link: 'en/setting/sms'
   },
   // tags_list: {
   //   business_name: {
