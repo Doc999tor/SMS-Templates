@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 
 import PreviewSMSPopup from '../preview_sms_popup/preview_sms_popup'
+import { getCurrentFormatTime } from 'helpers/currentTime.js'
 import SendingPopup from 'project-components/sending-popup/sending-popup'
 import replaceTags from 'helpers/replaceTags.js'
 import checkLength from 'helpers/checkLength.js'
@@ -90,9 +91,10 @@ const BulkSmsForm = ({ clients, referrer }) => {
         setShowPopup(true)
         const body = {
           clients,
-          text: `${replaceTags(inputEl.current?.innerText, true)} ${config.translations.unsubscribe_link.preview_text}`
+          text: `${replaceTags(inputEl.current?.innerText, true)} ${config.translations.unsubscribe_link.preview_text}`,
+          added: getCurrentFormatTime()
         }
-        const url = `${config.urls.send_sms}${location?.search}`
+        const url = `${config.urls.send_sms}`
         postService(url, body).then(({ status }) => {
           if (status === 201) {
             setSendingPopup(false)
