@@ -86,7 +86,7 @@ const BulkSmsForm = ({ clients, referrer }) => {
   const handleSendSMS = e => {
     e.preventDefault()
     if (+length > 0) {
-      const allowSending = config.sms_credits > Math.ceil(length/config.sms_page_size)*clients?.length
+      const allowSending = config.sms_credits > Math.ceil((length + config.translations.unsubscribe_link.average_length)/config.sms_page_size)*clients?.length
       if (allowSending) {
         setShowPopup(true)
         const body = {
@@ -130,7 +130,7 @@ const BulkSmsForm = ({ clients, referrer }) => {
           dangerouslySetInnerHTML={{ __html: template }}
         >
         </p>
-        <p className={'characters' + (length > config.sms_page_size ? ' warning_length' : '')}>{characters_label} <span>{length || 0}</span>/<span>{config.sms_page_size}</span></p>
+        <p className='characters'>{characters_label} <span>{length || 0}</span>/<span>{config.sms_page_size}</span></p>
         <button className={'preview_btn' + (+length < 1 ? ' inactive_btn' : '')} type='button' onClick={handleShowPopup}><img src={`${config.urls.media}ic_preview.svg`} alt='' />{preview_btn_label}</button>
         <div className='tags_strip'>
           <p className='tags_strip_title'>{tags_strip_title}</p>
