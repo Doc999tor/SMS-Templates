@@ -6,7 +6,7 @@ var config = {
     bulk_sms: {
       main_title: 'Bulk SMS',
       recipients_label: 'Recipients:',
-      amt_clients: '{amt} clients',
+      quantity_clients: '{quantity} clients',
       bulk_sms_form: {
         input_placeholder: 'Text message',
         characters_label: 'Characters:',
