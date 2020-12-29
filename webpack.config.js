@@ -15,8 +15,8 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
-    chunkFilename: process.env.NODE_ENV === 'development' ? '[name].chunk.js' : '[name].[contenthash:6].chunk.js',
-    filename: process.env.NODE_ENV === 'development' ? 'main.bundle.js' : 'main.[contenthash:6].bundle.min.js'
+    chunkFilename: '[name].chunk.js',
+    filename: 'main.bundle.js'
   },
   module: {
     rules: [
@@ -62,8 +62,8 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      chunkFilename: process.env.NODE_ENV === 'development' ? '[name].chunk.css' : '[name].[contenthash:6].chunk.css',
-      filename: process.env.NODE_ENV === 'development' ? 'main.bundle.css' : 'main.[contenthash:6].bundle.min.css'
+      chunkFilename: '[name].chunk.css',
+      filename: 'main.bundle.css'
     }),
     new HtmlWebpackPlugin({
       template: './index.html'
