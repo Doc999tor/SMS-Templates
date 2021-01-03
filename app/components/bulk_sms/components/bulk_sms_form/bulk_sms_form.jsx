@@ -95,7 +95,7 @@ const BulkSmsForm = ({ clients, referrer }) => {
           added: getCurrentFormatTime()
         }
         const url = `${config.urls.send_sms}`
-        postService(url, body).then(({ status }) => {
+        postService(url, JSON.stringify(body)).then(({ status }) => {
           if (status === 201) {
             setSendingPopup(false)
             setTimeout(() => {
