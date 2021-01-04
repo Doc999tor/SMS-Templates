@@ -116,6 +116,8 @@ const BulkSmsForm = ({ clients, referrer }) => {
 
   const handleBuySms = () => window.location.href = config.urls.sms_settings_link
 
+  const handleClickCancel = () => window.location = referrer
+
   return (
     <>
       <form className='bulk-sms-form' onSubmit={handleSendSMS}>
@@ -142,7 +144,7 @@ const BulkSmsForm = ({ clients, referrer }) => {
         </div>
         <div className='btns_wrapper'>
           <div className='btns_sections'>
-            <button className='cancel' type='button'><img src={`${config.urls.media}ic_cancel.svg`} alt='' />{cancel_btn_label}</button>
+            <button className='cancel' onClick={handleClickCancel} type='button'><img src={`${config.urls.media}ic_cancel.svg`} alt='' />{cancel_btn_label}</button>
             <button className={'send' + ((+length < 1 ? ' inactive_btn' : ''))} type='submit'><img src={`${config.urls.media}ic_send.svg`} alt='' />{send_btn_label}</button>
           </div>
         </div>
