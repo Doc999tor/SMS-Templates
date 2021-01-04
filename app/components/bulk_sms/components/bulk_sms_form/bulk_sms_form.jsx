@@ -91,7 +91,7 @@ const BulkSmsForm = ({ clients, referrer }) => {
         setShowPopup(true)
         const body = {
           clients,
-          text: `${replaceTags(inputEl.current?.innerText, true)} ${config.translations.unsubscribe_link.preview_text}`,
+          text: `${replaceTags(inputEl.current?.innerText, true)} ${config.tag_list.unsubscribe_link}`,
           added: getCurrentFormatTime()
         }
         const url = `${config.urls.send_sms}`

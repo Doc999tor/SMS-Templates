@@ -81,7 +81,8 @@ var config = {
   ],
   urls: {
     media: './dist/media/',
-    send_sms: 'https://api.bewebmaster.co.il/send-sms'
+    send_sms: 'https://api.bewebmaster.co.il/send-sms',
+    sms_settings_link: 'en/setting/sms'
   },
   tag_list: {
     business_name: "$$business_name$$",
@@ -90,6 +91,6 @@ var config = {
     business_facebook_url: "$$business_facebook_url$$",
     business_website_url: "$$business_website_url$$",
     client_name: "$$client_name$$",
-    sms_settings_link: 'en/setting/sms'
+    unsubscribe_link: '$$unsubscribe_link$$'
   },
 }
