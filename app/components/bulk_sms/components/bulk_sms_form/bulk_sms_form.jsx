@@ -99,7 +99,7 @@ const BulkSmsForm = ({ clients, referrer }) => {
           if (status === 201) {
             setSendingPopup(false)
             setTimeout(() => {
-              window.location = referrer
+              window.history.back()
             }, 500)
           }
           if (status === 409) {
@@ -116,7 +116,7 @@ const BulkSmsForm = ({ clients, referrer }) => {
 
   const handleBuySms = () => window.location.href = config.urls.sms_settings_link
 
-  const handleClickCancel = () => window.location = referrer
+  const handleClickCancel = () => window.history.back()
 
   return (
     <>
@@ -137,8 +137,8 @@ const BulkSmsForm = ({ clients, referrer }) => {
         <div className='tags_strip'>
           <p className='tags_strip_title'>{tags_strip_title}</p>
           <div className='tags_list'>
-            {Object.keys(config.translations.tags).map(tag => {
-              return <span className={'tag' + (inputEl.current?.innerText?.includes(config.translations.tags[tag].label) ? ' used_tag' : '')} key={config.translations.tags[tag].label} onClick={() => { !inputEl.current?.innerText?.includes(config.translations.tags[tag].label) && handleAddTag(tag)}}>{config.translations.tags[tag].label}</span>
+            {Object.keys(config.tag_list).map(tag => {
+              return (config.translations.tags[tag]?.label && <span className={'tag' + (inputEl.current?.innerText?.includes(config.translations.tags[tag].label) ? ' used_tag' : '')} key={config.translations.tags[tag].label} onClick={() => { !inputEl.current?.innerText?.includes(config.translations.tags[tag].label) && handleAddTag(tag)}}>{config.translations.tags[tag].label}</span>)
             })}
           </div>
         </div>
