@@ -143,7 +143,16 @@ const BulkSmsForm = ({ clients }) => {
           placeholder={input_placeholder}
           dangerouslySetInnerHTML={{ __html: template }}
         />
-        <p className='characters'>{characters_label} <span>{length || 0}</span>/<span>{config.sms_page_size}</span></p>
+        <p className='characters'>{
+          length && +length > config.sms_page_size
+            ? config.translations.bulk_sms.bulk_sms_form?.exceed_characters_number
+              .replace('{currentTemplateSymbols}', length)
+              .replace('{maxTemplateSymbols}', config.sms_page_size)
+              .replace('{pages_count}', Math.ceil(length / config.sms_page_size))
+            : config.translations.bulk_sms.bulk_sms_form?.characters_number
+              .replace('{currentTemplateSymbols}', length)
+              .replace('{maxTemplateSymbols}', config.sms_page_size)
+        }</p>
         <button className={'preview_btn' + (+length < 1 ? ' inactive_btn' : '')} type='button' onClick={handleShowPopup}><img src={`${config.urls.media}ic_preview.svg`} alt='' />{preview_btn_label}</button>
         <div className='tags_strip'>
           <p className='tags_strip_title'>{tags_strip_title}</p>

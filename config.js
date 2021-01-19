@@ -8,8 +8,9 @@ var config = {
       recipients_label: 'Recipients:',
       quantity_clients: '{quantity} clients',
       bulk_sms_form: {
+        exceed_characters_number: 'Characters: {currentTemplateSymbols} of {maxTemplateSymbols} ({pages_count} pages)',
         input_placeholder: 'Text message',
-        characters_label: 'Characters:',
+        characters_number: 'Characters: {currentTemplateSymbols} of {maxTemplateSymbols}',
         preview_btn_label: 'preview',
         tags_strip_title: 'Tags(quick fill):',
         cancel_btn_label: 'Cancel',
