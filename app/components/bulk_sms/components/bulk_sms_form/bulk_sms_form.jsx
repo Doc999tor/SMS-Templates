@@ -36,14 +36,16 @@ const BulkSmsForm = ({ clients }) => {
   }, [previewText, template])
 
   const onUnload = e => {
-    e.preventDefault()
-    e.returnValue = ''
+    if (+length > 0) {
+      e.preventDefault()
+      e.returnValue = ''
+    }
   }
 
   useEffect(() => {
     window.addEventListener('beforeunload', onUnload)
     return () => window.removeEventListener('beforeunload', onUnload)
-  }, [])
+  }, [length])
 
   const handleShowPopup = () => {
     if (+length > 0) {
