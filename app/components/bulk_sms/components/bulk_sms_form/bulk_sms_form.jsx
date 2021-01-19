@@ -20,8 +20,8 @@ const {
   cancel_btn_label
 } = config.translations.bulk_sms.bulk_sms_form
 
-const BulkSmsForm = ({ clients, referrer }) => {
-  const inputEl = useRef(null);
+const BulkSmsForm = ({ clients }) => {
+  const inputEl = useRef(null)
   const [template, setTemplate] = useState('')
   const [previewText, setPreviewText] = useState('')
   const [preview, setPreview] = useState(false)
@@ -58,7 +58,7 @@ const BulkSmsForm = ({ clients, referrer }) => {
   }
 
   const handleAddTag = tag => {
-    const tagInText = ` <span class='tag' contentEditable='false'>${config.translations.tags[tag].label}</span>  `
+    const tagInText = ` <span class='tag' contentEditable='false'>${config.translations.tags[tag].label}</span> `
     setTemplate(text => text + tagInText)
     setPreviewText(replaceTags(inputEl.current?.innerText, false))
     setTimeout(() => setCursor(), 10);
@@ -121,7 +121,7 @@ const BulkSmsForm = ({ clients, referrer }) => {
   return (
     <>
       <form className='bulk-sms-form' onSubmit={handleSendSMS}>
-        <p
+        <div
           className='template'
           name='template'
           ref={inputEl}
@@ -130,8 +130,7 @@ const BulkSmsForm = ({ clients, referrer }) => {
           onInput={handleChangeInput}
           placeholder={input_placeholder}
           dangerouslySetInnerHTML={{ __html: template }}
-        >
-        </p>
+        />
         <p className='characters'>{characters_label} <span>{length || 0}</span>/<span>{config.sms_page_size}</span></p>
         <button className={'preview_btn' + (+length < 1 ? ' inactive_btn' : '')} type='button' onClick={handleShowPopup}><img src={`${config.urls.media}ic_preview.svg`} alt='' />{preview_btn_label}</button>
         <div className='tags_strip'>
