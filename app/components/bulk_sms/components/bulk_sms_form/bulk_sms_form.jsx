@@ -70,7 +70,7 @@ const BulkSmsForm = ({ clients }) => {
   }
 
   const handleAddTag = tag => {
-    const tagInText = ` <span class='tag' contentEditable='false'>${config.translations.tags[tag].label}</span> `
+    const tagInText = `<span class='tag' contentEditable='false'>${config.translations.tags[tag].label}</span>&nbsp;`
     setTemplate(text => text + tagInText)
     setPreviewText(replaceTags(inputEl.current?.innerText, false))
     setTimeout(() => setCursor(), 10);
