@@ -35,6 +35,16 @@ const BulkSmsForm = ({ clients }) => {
     setLength(checkLength(inputEl.current?.innerText))
   }, [previewText, template])
 
+  const onUnload = e => {
+    e.preventDefault()
+    e.returnValue = ''
+  }
+
+  useEffect(() => {
+    window.addEventListener('beforeunload', onUnload)
+    return () => window.removeEventListener('beforeunload', onUnload)
+  }, [])
+
   const handleShowPopup = () => {
     if (+length > 0) {
       setPreview(true)
@@ -75,12 +85,12 @@ const BulkSmsForm = ({ clients }) => {
   }
 
   const setCursor = () => {
-    const range = document.createRange();
-    range.selectNodeContents(inputEl.current);
-    range.collapse(false);
-    const sel = window.getSelection();
-    sel.removeAllRanges();
-    sel.addRange(range);
+    const range = document.createRange()
+    range.selectNodeContents(inputEl.current)
+    range.collapse(false)
+    const sel = window.getSelection()
+    sel.removeAllRanges()
+    sel.addRange(range)
   }
 
   const handleSendSMS = e => {
