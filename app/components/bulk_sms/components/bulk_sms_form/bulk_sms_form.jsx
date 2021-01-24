@@ -112,7 +112,7 @@ const BulkSmsForm = ({ clients }) => {
             setSendingPopup(false)
             setTimeout(() => {
               window.history.back()
-            }, 500)
+            }, 2000)
           }
           if (status === 409) {
             handleClosePopup()
