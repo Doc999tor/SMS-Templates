@@ -36,17 +36,17 @@ const BulkSmsForm = ({ clients }) => {
     setLength(checkLength(inputEl.current?.innerText))
   }, [previewText, template])
 
-  const onUnload = e => {
-    if (+length > 0 && !unloadTrigger) {
-      e.preventDefault()
-      e.returnValue = ''
-    }
-  }
+  // const onUnload = e => {
+  //   if (+length > 0 && !unloadTrigger) {
+  //     e.preventDefault()
+  //     e.returnValue = ''
+  //   }
+  // }
 
-  useEffect(() => {
-    if (+length > 0 && !unloadTrigger) window.addEventListener('beforeunload', onUnload)
-    return () => window.removeEventListener('beforeunload', onUnload)
-  }, [length, unloadTrigger])
+  // useEffect(() => {
+  //   if (+length > 0 && !unloadTrigger) window.addEventListener('beforeunload', onUnload)
+  //   return () => window.removeEventListener('beforeunload', onUnload)
+  // }, [length, unloadTrigger])
 
   const handleShowPopup = () => {
     if (+length > 0) {
@@ -71,10 +71,10 @@ const BulkSmsForm = ({ clients }) => {
   }
 
   const handleAddTag = tag => {
-    const tagInText = `<span class='tag' contentEditable='false'>${config.translations.tags[tag].label}</span>&nbsp;`
+    const tagInText = `<span class='tag' contentEditable='false'>${config.translations.tags[tag].label}</span>`
     setTemplate(text => text + tagInText)
     setPreviewText(replaceTags(inputEl.current?.innerText, false))
-    setTimeout(() => setCursor(), 10);
+    setTimeout(() => setCursor(), 10)
   }
 
   const handleBlurTemplate = ({ currentTarget: { innerHTML, innerText } }) => {
@@ -85,6 +85,12 @@ const BulkSmsForm = ({ clients }) => {
   const handleChangeInput = ({ currentTarget: { innerText } }) => {
     setLength(checkLength(inputEl.current?.innerText))
     setPreviewText(replaceTags(innerText, false))
+    const nasty_br = document.getElementsByTagName('br')
+    if (nasty_br.length) {
+      for (let i = (nasty_br.length - 1); i >= 0; i--) {
+        nasty_br[i].parentNode.removeChild(nasty_br[i])
+      }
+    }
   }
 
   const setCursor = () => {
