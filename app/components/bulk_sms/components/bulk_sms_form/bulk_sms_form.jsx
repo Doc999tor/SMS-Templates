@@ -30,13 +30,14 @@ const BulkSmsForm = ({ clients }) => {
   const [showPopup, setShowPopup] = useState(false)
   const [noSms, setNoSms] = useState(false)
   const [length, setLength] = useState(0)
+  const [unloadTrigger, setUnloadTrigger] = useState(false)
 
   useEffect(() => {
     setLength(checkLength(inputEl.current?.innerText))
   }, [previewText, template])
 
   const onUnload = e => {
-    if (+length > 0 && !showPopup && !noSms) {
+    if (+length > 0 && !unloadTrigger) {
       e.preventDefault()
       e.returnValue = ''
     }
@@ -45,7 +46,7 @@ const BulkSmsForm = ({ clients }) => {
   useEffect(() => {
     window.addEventListener('beforeunload', onUnload)
     return () => window.removeEventListener('beforeunload', onUnload)
-  }, [length, showPopup, noSms])
+  }, [length, unloadTrigger])
 
   const handleShowPopup = () => {
     if (+length > 0) {
@@ -99,6 +100,7 @@ const BulkSmsForm = ({ clients }) => {
     e.preventDefault()
     if (+length > 0) {
       const allowSending = config.sms_credits > Math.ceil((length + config.translations.unsubscribe_link.average_length)/config.sms_page_size)*clients?.length
+      setUnloadTrigger(true)
       if (allowSending) {
         setShowPopup(true)
         const body = {
