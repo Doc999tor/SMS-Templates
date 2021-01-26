@@ -44,7 +44,7 @@ const BulkSmsForm = ({ clients }) => {
   }
 
   useEffect(() => {
-    window.addEventListener('beforeunload', onUnload)
+    if (+length > 0 && !unloadTrigger) window.addEventListener('beforeunload', onUnload)
     return () => window.removeEventListener('beforeunload', onUnload)
   }, [length, unloadTrigger])
 
