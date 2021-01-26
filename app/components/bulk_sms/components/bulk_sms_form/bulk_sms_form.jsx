@@ -36,17 +36,17 @@ const BulkSmsForm = ({ clients }) => {
     setLength(checkLength(inputEl.current?.innerText))
   }, [previewText, template])
 
-  // const onUnload = e => {
-  //   if (+length > 0 && !unloadTrigger) {
-  //     e.preventDefault()
-  //     e.returnValue = ''
-  //   }
-  // }
+  const onUnload = e => {
+    if (+length > 0 && !unloadTrigger) {
+      e.preventDefault()
+      e.returnValue = ''
+    }
+  }
 
-  // useEffect(() => {
-  //   if (+length > 0 && !unloadTrigger) window.addEventListener('beforeunload', onUnload)
-  //   return () => window.removeEventListener('beforeunload', onUnload)
-  // }, [length, unloadTrigger])
+  useEffect(() => {
+    if (+length > 0 && !unloadTrigger) window.addEventListener('beforeunload', onUnload)
+    return () => window.removeEventListener('beforeunload', onUnload)
+  }, [length, unloadTrigger])
 
   const handleShowPopup = () => {
     if (+length > 0) {
