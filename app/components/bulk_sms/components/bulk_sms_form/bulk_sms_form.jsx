@@ -135,7 +135,7 @@ const BulkSmsForm = ({ clients }) => {
   return (
     <>
       <form className='bulk-sms-form' onSubmit={handleSendSMS}>
-        <div
+        <span
           className='template'
           name='template'
           ref={inputEl}
