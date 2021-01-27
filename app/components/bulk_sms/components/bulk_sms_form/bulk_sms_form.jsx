@@ -71,7 +71,7 @@ const BulkSmsForm = ({ clients }) => {
   }
 
   const handleAddTag = tag => {
-    const tagInText = `<span class='tag' contentEditable='false'>${config.translations.tags[tag].label}</span>`
+    const tagInText = `<span class='tag' contentEditable='false' onclick='setCursorAfterTag(this)'>${config.translations.tags[tag].label}</span>`
     setTemplate(text => text + tagInText)
     setPreviewText(replaceTags(inputEl.current?.innerText, false))
     setTimeout(() => setCursor(), 10)
@@ -100,6 +100,7 @@ const BulkSmsForm = ({ clients }) => {
     const sel = window.getSelection()
     sel.removeAllRanges()
     sel.addRange(range)
+    inputEl.current.focus()
   }
 
   const handleSendSMS = e => {
