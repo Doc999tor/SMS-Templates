@@ -3,6 +3,9 @@ import './noSmsPopup.styl'
 const NoSmsPopup = ({
   isActivePopup,
   onClosePopup,
+  smsPermission,
+  textPermission,
+  permission_btn_label,
   text,
   btn_label,
   onBuySms,
@@ -18,11 +21,11 @@ const NoSmsPopup = ({
           <img src={`${config.urls.media}ic_sms.svg`} />
         </div>
         <p className='text_conflict'>
-          {text}
+          {!smsPermission ? text : textPermission}
         </p>
-        <button className='buy_sms_button' type='button' onClick={onBuySms}>
-          <img src={`${config.urls.media}ic_buy.svg`} />
-          {btn_label}
+        <button className='buy_sms_button' type='button' onClick={!smsPermission ? onBuySms : onClosePopup}>
+          {!smsPermission && <img src={`${config.urls.media}ic_buy.svg`} />}
+          {!smsPermission ? btn_label : permission_btn_label}
         </button>
       </div>
     </div>

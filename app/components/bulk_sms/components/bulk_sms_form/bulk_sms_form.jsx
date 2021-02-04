@@ -31,6 +31,7 @@ const BulkSmsForm = ({ clients }) => {
   const [noSms, setNoSms] = useState(false)
   const [length, setLength] = useState(0)
   const [unloadTrigger, setUnloadTrigger] = useState(false)
+  const [smsPermission, setSmsPermission] = useState(false)
 
   useEffect(() => {
     setLength(checkLength(inputEl.current?.innerText))
@@ -66,6 +67,7 @@ const BulkSmsForm = ({ clients }) => {
     setActivePopup(true)
     setTimeout(() => {
       setNoSms(false)
+      setSmsPermission(false)
       setActivePopup(false)
     }, 300)
   }
@@ -125,6 +127,11 @@ const BulkSmsForm = ({ clients }) => {
           }
           if (status === 409) {
             setShowPopup(false)
+            setNoSms(true)
+          }
+          if (status === 451) {
+            setShowPopup(false)
+            setSmsPermission(true)
             setNoSms(true)
           }
         })
@@ -189,10 +196,13 @@ const BulkSmsForm = ({ clients }) => {
         success_label={config.translations.sending_popup.success}
       />}
       {noSms && <NoSmsPopup
+        smsPermission={smsPermission}
         isActivePopup={activePopup}
         onClosePopup={handleCloseNoSmsPopup}
         btn_label={config.translations.no_sms_popup.buy_btn_lable}
         text={config.translations.no_sms_popup.text_label}
+        textPermission={config.translations.warning_sms_popup.text_label}
+        permission_btn_label={config.translations.warning_sms_popup.btn_lable}
         onBuySms={handleBuySms}
       />}
     </>

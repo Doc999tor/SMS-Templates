@@ -29,6 +29,10 @@ var config = {
       text_label: 'You don’t have SMS to send this message! Buy SMS and try again please.',
       buy_btn_lable: 'Buy sms'
     },
+    warning_sms_popup: {
+      text_label: 'Lista can\'t send sms for you til you confirm your phone number. We\'ll send you sms with a link, click the link and prove that it\'s your phone number',
+      btn_lable: 'ok'
+    },
     tags: {
       business_name: {
         label: "Business Name",
