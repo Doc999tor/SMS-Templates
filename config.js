@@ -33,6 +33,8 @@ var config = {
       text_label: 'Lista can\'t send sms for you til you confirm your phone number. We\'ll send you sms with a link, click the link and prove that it\'s your phone number',
       btn_lable: 'ok'
     },
+    legal_warning: 'You\'re taking the risk of sending bulk ads by sms. Pls refer to the ',
+    legal_link: 'SMS Marketing Law',
     tags: {
       business_name: {
         label: "Business Name",
@@ -87,7 +89,8 @@ var config = {
   urls: {
     media: './dist/media/',
     send_sms: 'https://api.bewebmaster.co.il/send-sms',
-    sms_settings_link: 'en/setting/sms'
+    sms_settings_link: 'en/setting/sms',
+    legal_link: 'https://google.com',
   },
   tag_list: {
     business_name: "$$business_name$$",
