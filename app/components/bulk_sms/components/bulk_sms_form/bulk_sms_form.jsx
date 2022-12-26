@@ -34,7 +34,7 @@ const BulkSmsForm = ({ clients }) => {
   const [smsPermission, setSmsPermission] = useState(false)
 
   useEffect(() => {
-    setLength(checkLength(inputEl.current?.innerText))
+    setLength(checkLength(inputEl.current?.textContent))
   }, [previewText, template])
 
   const onUnload = e => {
@@ -75,18 +75,19 @@ const BulkSmsForm = ({ clients }) => {
   const handleAddTag = tag => {
     const tagInText = `<span class='tag' contentEditable='false' onclick='setCursorAfterTag(this)'>${config.translations.tags[tag].label}</span>`
     setTemplate(text => text + tagInText)
-    setPreviewText(replaceTags(inputEl.current?.innerText, false))
+    setPreviewText(replaceTags(inputEl.current?.textContent, false))
     setTimeout(() => setCursor(), 10)
   }
 
-  const handleBlurTemplate = ({ currentTarget: { innerHTML, innerText } }) => {
+  const handleBlurTemplate = ({ currentTarget: { innerHTML, textContent } }) => {
     setTemplate(innerHTML)
-    setPreviewText(`${replaceTags(innerText, false)} ${config.translations.unsubscribe_link.preview_text}`)
+
+    setPreviewText(`${replaceTags(textContent, false)} ${config.translations.unsubscribe_link.preview_text}`)
   }
 
-  const handleChangeInput = ({ currentTarget: { innerText } }) => {
-    setLength(checkLength(inputEl.current?.innerText))
-    setPreviewText(replaceTags(innerText, false))
+  const handleChangeInput = ({ currentTarget: { textContent } }) => {
+    setLength(checkLength(inputEl.current?.textContent))
+    setPreviewText(replaceTags(textContent, false))
     const nasty_br = document.getElementsByTagName('br')
     if (nasty_br.length) {
       for (let i = (nasty_br.length - 1); i >= 0; i--) {
@@ -114,7 +115,7 @@ const BulkSmsForm = ({ clients }) => {
         setShowPopup(true)
         const body = {
           clients,
-          text: `${replaceTags(inputEl.current?.innerText, true)} ${config.tag_list.unsubscribe_link}`,
+          text: `${replaceTags(inputEl.current?.textContent, true)} ${config.tag_list.unsubscribe_link}`,
           added: getCurrentFormatTime()
         }
         const url = `${config.urls.send_sms}`
@@ -174,7 +175,7 @@ const BulkSmsForm = ({ clients }) => {
           <p className='tags_strip_title'>{tags_strip_title}</p>
           <div className='tags_list'>
             {Object.keys(config.tag_list).map(tag => {
-              return (config.translations.tags[tag]?.label && <span className={'tag' + (inputEl.current?.innerText?.includes(config.translations.tags[tag].label) ? ' used_tag' : '')} key={config.translations.tags[tag].label} onClick={() => { !inputEl.current?.innerText?.includes(config.translations.tags[tag].label) && handleAddTag(tag)}}>{config.translations.tags[tag].label}</span>)
+              return (config.translations.tags[tag]?.label && <span className={'tag' + (inputEl.current?.textContent?.includes(config.translations.tags[tag].label) ? ' used_tag' : '')} key={config.translations.tags[tag].label} onClick={() => { !inputEl.current?.textContent?.includes(config.translations.tags[tag].label) && handleAddTag(tag)}}>{config.translations.tags[tag].label}</span>)
             })}
           </div>
         </div>
