@@ -1,6 +1,6 @@
 import AccessRights from '../../../access-rights/access-rights.jsx'
 import Create from '../modal-create/modal-create.jsx'
-import { Menu } from 'project-components'
+import Menu from 'project-components/Menu/Menu'
 import './topnav.styl'
 
 class Topnav extends React.Component {
@@ -13,9 +13,9 @@ class Topnav extends React.Component {
     isVisibleCreateModal: false
   }
   handleCreateModal = () => {
-    this.setState({isVisibleCreateModal: !this.state.isVisibleCreateModal})
-    if (this.state.isVisibleCreateModalContex) setTimeout(() => this.setState({isVisibleCreateModalContex: false}), 300)
-    else this.setState({isVisibleCreateModalContex: true})
+    this.setState({ isVisibleCreateModal: !this.state.isVisibleCreateModal })
+    if (this.state.isVisibleCreateModalContex) setTimeout(() => this.setState({ isVisibleCreateModalContex: false }), 300)
+    else this.setState({ isVisibleCreateModalContex: true })
     this.props.update()
   }
 
@@ -31,7 +31,7 @@ class Topnav extends React.Component {
     document.querySelector('body').classList.remove('no-scroll')
   }
 
-  render () {
+  render() {
     return (
       <div id='topnav'>
         {this.state.isVisibleCreateModalContex &&

@@ -1,26 +1,21 @@
+@import '~normalize.css';
+@import 'variables.css'
 *
   box-sizing border-box
+#root
+  background-color var(--sec-color)
+  max-width 640px
+  margin 0 auto
+  overflow-y auto
+  -webkit-box-shadow 0px 0px 6px 0px rgba(94, 54, 177, 0.75)
+  -moz-box-shadow 0px 0px 6px 0px rgba(94, 54, 177, 0.75)
+  box-shadow 0px 0px 6px 0px rgba(94, 54, 177, 0.75)
 body
   font-family "Helvetica Neue", Helvetica, Arial, sans-serif
-  font-size 14px
-  line-height 1.42857143
-  color #333
-  background-color #fff
+  font-size 1rem
+  color var(--main-color)
   margin 0
-  min-width 414px
-.h1, h1
-  font-family inherit
-  font-weight 500
-  line-height 1.1
-  color inherit
+p, h1, h2
   margin 0
-p
-  margin 0
-.h1, h1, button, input
-  font-size 21px
-.right
-  float right
-.left
-  float left
 .hidden
   display none

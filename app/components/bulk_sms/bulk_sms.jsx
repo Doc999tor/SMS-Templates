@@ -1,0 +1,27 @@
+import React, { useState, useEffect } from 'react'
+
+import BulkSmsForm from './components/bulk_sms_form/bulk_sms_form'
+
+import './bulk_sms.styl'
+
+const BulkSms = () => {
+  const [clients, setCliens] = useState([])
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location?.search)
+    const clientsFromUrl = JSON.parse(searchParams.get('clients'))
+    clientsFromUrl && setCliens(clientsFromUrl)
+  }, [])
+  const goBack = () => window.history.back()
+  return (
+    <div className='bulk_sms'>
+      <header>
+        <p className='recipients'>{config.translations.bulk_sms.recipients_label}</p>
+        <label className='amt_clients'>{config.translations.bulk_sms.quantity_clients.replace('{quantity}', clients?.length)}<button className='add_clients_btn' type='button' onClick={goBack}><img src={`${config.urls.media}ic_clients.svg`} alt='' /></button></label>
+      </header>
+      <BulkSmsForm clients={clients} />
+      <p id="legal_warning">{ config.translations.legal_warning }<a href={ config.urls.legal_link } target="_blank">{ config.translations.legal_link }</a></p>
+    </div>
+  )
+}
+
+export default BulkSms

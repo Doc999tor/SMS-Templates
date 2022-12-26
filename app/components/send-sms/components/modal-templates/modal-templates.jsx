@@ -1,4 +1,4 @@
-import {Modal} from 'project-components'
+import Modal from 'project-components/Modal/Modal.jsx'
 import './modal-templates.styl'
 const Link = ReactRouterDOM.Link
 

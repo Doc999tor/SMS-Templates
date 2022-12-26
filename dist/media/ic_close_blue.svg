@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22">
+    <defs>
+        <style>
+            .cls-1{fill:#4f2da7}.cls-2{fill:none}.cls-3{clip-path:url(#clip-path)}.cls-4{clip-path:url(#clip-path-2)}.cls-5{clip-path:url(#clip-path-3)}
+        </style>
+        <clipPath id="clip-path">
+            <path d="M0 0h22v22H0z" class="cls-2"/>
+        </clipPath>
+        <clipPath id="clip-path-2">
+            <path id="Combined_Shape" d="M3.222 18.778A11 11 0 1 1 18.778 3.222 11 11 0 1 1 3.222 18.778zM2 11a9 9 0 1 0 9-9 9.01 9.01 0 0 0-9 9zm11.293 3.707L11 12.415l-2.292 2.292a1 1 0 0 1-1.415-1.414L9.586 11 7.293 8.708a1 1 0 0 1 1.415-1.415L11 9.586l2.293-2.293a1 1 0 0 1 1.414 1.415L12.415 11l2.293 2.293a1 1 0 1 1-1.414 1.414z" class="cls-1" data-name="Combined Shape"/>
+        </clipPath>
+        <clipPath id="clip-path-3">
+            <path d="M0 0h24v24H0z" class="cls-2"/>
+        </clipPath>
+    </defs>
+    <g id="ic_close" class="cls-3">
+        <path id="Combined_Shape-2" d="M3.222 18.778A11 11 0 1 1 18.778 3.222 11 11 0 1 1 3.222 18.778zM2 11a9 9 0 1 0 9-9 9.01 9.01 0 0 0-9 9zm11.293 3.707L11 12.415l-2.292 2.292a1 1 0 0 1-1.415-1.414L9.586 11 7.293 8.708a1 1 0 0 1 1.415-1.415L11 9.586l2.293-2.293a1 1 0 0 1 1.414 1.415L12.415 11l2.293 2.293a1 1 0 1 1-1.414 1.414z" class="cls-1" data-name="Combined Shape"/>
+        <g class="cls-4">
+            <g id="_Color" class="cls-5" data-name="🎨Color" transform="translate(-1 -1)">
+                <path id="Rectangle" d="M0 0h24v24H0z" class="cls-1"/>
+            </g>
+        </g>
+    </g>
+</svg>

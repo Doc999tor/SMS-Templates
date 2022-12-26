@@ -1,5 +1,7 @@
 import AccessRights from '../../../access-rights/access-rights.jsx'
-import {checkLength, replaceTags, Modal} from 'project-components'
+import Modal from 'project-components/Modal/Modal.jsx'
+import replaceTags from 'project-components/replaceTags.js'
+import checkLength from 'project-components/checkLength.js'
 import {templatePostService} from 'project-services'
 import './modal-create.styl'
 

@@ -1,6 +1,6 @@
 import Delete from '../modal-delete/modal-delete.jsx'
 import Create from '../modal-create/modal-create.jsx'
-import {Swiper} from 'project-components'
+import Swiper from 'project-components/Swiper/Swiper.js'
 import './templates-list.styl'
 
 export default class TemplatesList extends React.Component {
