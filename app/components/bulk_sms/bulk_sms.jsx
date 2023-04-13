@@ -27,6 +27,7 @@ const BulkSms = () => {
     )
       .map(unPad)
       .map(fromB64)
+    console.log(clientsFromUrl)
     setClients(clientsFromUrl)
   }, [])
   const goBack = () => window.history.back()
